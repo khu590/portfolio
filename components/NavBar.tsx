@@ -6,10 +6,9 @@ import { profile } from "@/lib/data";
 
 const links = [
   { href: "#about", label: "about.md" },
-  { href: "#experience", label: "experience.log" },
+  { href: "#experience", label: "timeline.log" },
   { href: "#skills", label: "skills.json" },
   { href: "#project", label: "project.py" },
-  { href: "#education", label: "education.yml" },
 ];
 
 export default function NavBar() {

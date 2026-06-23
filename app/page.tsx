@@ -6,11 +6,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import Landing from "@/components/Landing";
 import NavBar from "@/components/NavBar";
 import Hero from "@/components/Hero";
-import Stats from "@/components/Stats";
-import Experience from "@/components/Experience";
+import Timeline from "@/components/Timeline";
 import Skills from "@/components/Skills";
 import Project from "@/components/Project";
-import Education from "@/components/Education";
+import Credentials from "@/components/Credentials";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -52,11 +51,10 @@ export default function Home() {
         >
           <NavBar />
           <Hero />
-          <Stats />
-          <Experience />
+          <Timeline />
           <Skills />
           <Project />
-          <Education />
+          <Credentials />
           <Contact />
         </motion.main>
       )}

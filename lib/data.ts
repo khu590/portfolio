@@ -55,11 +55,14 @@ export const skills = [
 
 export const experience = [
   {
+    type: "work" as const,
     role: "Analyst — DevOps & Production",
     company: "Société Générale",
     sub: "Global Solution Centre · Bengaluru, India",
     date: "Aug 2023 – Aug 2025",
+    sortDate: "2023-08",
     badge: "Full-time · 2 yrs",
+    current: false,
     highlights: [
       "Resolved 25+ production incidents and service requests weekly using SQL-based investigations, ensuring SLA compliance and minimal business disruption.",
       "Identified root causes of recurring application and batch failures through deep SQL analysis, materially improving system stability.",
@@ -69,11 +72,14 @@ export const experience = [
     ],
   },
   {
+    type: "work" as const,
     role: "Full-Stack Engineering Intern",
     company: "Tequed Labs",
     sub: "Bengaluru, India",
     date: "Aug 2022 – Sep 2022",
+    sortDate: "2022-08",
     badge: "Internship · 2 mo",
+    current: false,
     highlights: [
       "Built RESTful APIs and backend services using Python, MySQL, and MongoDB to support scalable, secure data processing.",
       "Optimised SQL queries and database performance, reducing latency and improving data retrieval efficiency.",
@@ -113,18 +119,24 @@ export const certifications = [
 
 export const education = [
   {
+    type: "education" as const,
     degree: "MSc Computing (Data Analytics)",
     school: "Dublin City University",
     location: "Dublin, Ireland",
     date: "Sept 2025 – Aug 2026",
+    sortDate: "2025-09",
+    current: true,
     grade: "1:1 Expected",
     modules: "Cloud Tech · Advanced ML (XAI, CNN, RNN) · Statistical Modeling · Big Data (Spark & Hadoop) · Time Series (ARIMA) · GDPR / Data Ethics",
   },
   {
+    type: "education" as const,
     degree: "BE Computer Science Engineering",
     school: "Dayananda Sagar Academy of Technology",
     location: "Bengaluru, India",
     date: "June 2019 – June 2023",
+    sortDate: "2019-06",
+    current: false,
     grade: "GPA 8.5/10 · First Class Hons",
     modules: "Data Structures & Algorithms · OS · Linux · Java · C / C++ · Network Systems · Databases (SQL / NoSQL)",
   },

@@ -40,15 +40,32 @@ export default function Hero() {
           </motion.p>
 
           <motion.p
-            className="text-inksoft text-[1.05rem] leading-relaxed max-w-[480px] mb-8"
+            className="text-inksoft text-[1.05rem] leading-relaxed max-w-[480px] mb-3"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            2+ years resolving production-grade SQL incidents at Société
-            Générale. Currently completing an MSc in Data Analytics at Dublin
-            City University — building toward applied ML, explainable AI, and
-            large-scale data systems.
+            I like systems that quietly work — the kind nobody notices until
+            they break. For two years at Société Générale, keeping those
+            systems healthy was my job: chasing down the root cause of a
+            failing batch job at 9pm, turning recurring fires into
+            documented fixes, making sure SQL queries answered the actual
+            question someone was asking.
+          </motion.p>
+
+          <motion.p
+            className="text-inksoft text-[1.05rem] leading-relaxed max-w-[480px] mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+          >
+            That work kept pointing toward a question I couldn&rsquo;t answer
+            with SQL alone: not just what broke, but what could be{" "}
+            <em className="text-amber not-italic">predicted</em>. So I went
+            back to school for it — I&rsquo;m currently finishing an MSc in
+            Data Analytics at Dublin City University, building the ML and
+            explainable-AI skills to go from fixing systems to designing
+            smarter ones.
           </motion.p>
 
           <motion.div
