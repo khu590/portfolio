@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-hand: "Caveat", cursive;
+  --font-script: "Pacifico", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #7c4dd9;
+  color: #faf8f3;
+}
+
+/* subtle scrollbar, webkit only — purely cosmetic, fails silently elsewhere */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1ede2;
+}
+::-webkit-scrollbar-thumb {
+  background: #dedacb;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8b8678;
+}
+
+/* faint paper-grain texture used on the scrapbook landing page */
+.paper-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
