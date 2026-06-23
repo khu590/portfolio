@@ -14,8 +14,8 @@ module.exports = {
         muted: '#8B8678',
         line: '#DEDACB',
         purple: {
-          DEFAULT: '#7C4DD9',
-          bg: '#EFE7FB',
+          DEFAULT: '#A8425E',
+          bg: '#F3E3E8',
         },
         amber: {
           DEFAULT: '#D97B29',
