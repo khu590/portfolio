@@ -7,9 +7,11 @@ import Image from "next/image";
 import { profile } from "@/lib/data";
 
 // The desktop canvas is designed at this fixed size, then scaled to fit
-// whatever viewport it's actually shown on (laptop, ultrawide, tablet-landscape).
-const CANVAS_W = 1600;
-const CANVAS_H = 1000;
+// whatever viewport it's actually shown on. 1440x900 matches the most common
+// laptop viewport (13"-15" screens at 1280-1440px logical width) so it needs
+// little to no scaling on most laptops, and scales cleanly up/down otherwise.
+const CANVAS_W = 1440;
+const CANVAS_H = 900;
 
 type CardProps = {
   children: React.ReactNode;
@@ -230,9 +232,9 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
     function fit() {
       const vw = window.innerWidth;
       const vh = window.innerHeight;
-      // Leave a little breathing room (96% of viewport) and never upscale
-      // past 1x so the board doesn't look blurry/oversized on big screens.
-      const s = Math.min((vw * 0.96) / CANVAS_W, (vh * 0.94) / CANVAS_H, 1);
+      // Use nearly the full viewport, never upscale past 1x so the board
+      // doesn't look blurry/oversized on big screens.
+      const s = Math.min(vw / CANVAS_W, vh / CANVAS_H, 1);
       setScale(s);
     }
     fit();
@@ -243,19 +245,20 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
   return (
     <div
       ref={wrapperRef}
-      className="w-full h-full flex items-center justify-center overflow-hidden"
+      className="relative w-full h-full overflow-hidden"
     >
       <div
-        className="relative flex-shrink-0"
+        className="absolute top-1/2 left-1/2"
         style={{
           width: CANVAS_W,
           height: CANVAS_H,
-          transform: `scale(${scale})`,
+          transform: `translate(-50%, -50%) scale(${scale})`,
+          transformOrigin: "center center",
         }}
       >
-        {/* ── Headline ── */}
+        {/* ── Headline — centered on the canvas, bigger ── */}
         <motion.p
-          className="absolute top-[78px] left-[815px] font-hand text-2xl text-scrap-pink"
+          className="absolute top-[228px] left-1/2 -translate-x-1/2 font-hand text-3xl text-scrap-pink whitespace-nowrap"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
@@ -264,7 +267,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
         </motion.p>
 
         <motion.h1
-          className="absolute top-[120px] left-[610px] w-[400px] font-script text-[4.6rem] leading-[1.05] text-scrap-rosedark text-center"
+          className="absolute top-[270px] left-1/2 -translate-x-1/2 w-[480px] font-script text-[5.5rem] leading-[1.05] text-scrap-rosedark text-center"
           style={{ textShadow: "3px 4px 0px rgba(216,141,160,0.45)" }}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -275,13 +278,13 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           {profile.name.split(" ")[1]}
         </motion.h1>
 
-        <Star className="top-[330px] left-[585px]" size={42} delay={0.6} />
-        <Star className="top-[225px] left-[1015px]" size={26} delay={0.7} />
-        <Star className="top-[380px] left-[885px]" size={22} delay={0.8} />
+        <Star className="top-[480px] left-[600px]" size={42} delay={0.6} />
+        <Star className="top-[355px] left-[940px]" size={26} delay={0.7} />
+        <Star className="top-[535px] left-[810px]" size={22} delay={0.8} />
 
         {/* Contact me */}
         <ScrapCard
-          className="top-[75px] left-[85px] w-[150px]"
+          className="top-[68px] left-[76px] w-[135px]"
           rotate={-7}
           delay={0.15}
           onClick={() => onEnter("contact")}
@@ -292,13 +295,13 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
 
         {/* Map decoration */}
         <div
-          className="absolute top-[135px] left-[125px] w-[195px] h-[235px] bg-[#E4DEC8] border border-[#C9C0A0] shadow-md opacity-90"
+          className="absolute top-[122px] left-[112px] w-[176px] h-[212px] bg-[#E4DEC8] border border-[#C9C0A0] shadow-md opacity-90"
           style={{ rotate: "-4deg" }}
         />
 
         {/* Film strip */}
         <motion.div
-          className="absolute top-[145px] left-[235px] w-[385px] h-[125px] bg-[#9C3A1F] rounded-sm shadow-lg flex items-center gap-1.5 px-3"
+          className="absolute top-[130px] left-[212px] w-[346px] h-[112px] bg-[#9C3A1F] rounded-sm shadow-lg flex items-center gap-1.5 px-3"
           style={{ rotate: "-3deg" }}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -312,7 +315,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           ].map((src, i) => (
             <div
               key={i}
-              className="relative w-[78px] h-[100px] bg-white flex-shrink-0 overflow-hidden border-2 border-[#9C3A1F]"
+              className="relative w-[70px] h-[90px] bg-white flex-shrink-0 overflow-hidden border-2 border-[#9C3A1F]"
             >
               <Image src={src} alt="" fill className="object-cover" />
             </div>
@@ -321,7 +324,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
 
         {/* About me */}
         <ScrapCard
-          className="top-[280px] left-[235px] w-[275px] h-[245px]"
+          className="top-[252px] left-[212px] w-[248px] h-[220px]"
           rotate={-1.5}
           delay={0.2}
           onClick={() => onEnter("about")}
@@ -332,7 +335,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
 
         {/* Goals */}
         <ScrapCard
-          className="top-[540px] left-[85px] w-[195px] h-[195px]"
+          className="top-[486px] left-[76px] w-[176px] h-[176px]"
           rotate={-3}
           delay={0.25}
           onClick={() => onEnter("education")}
@@ -343,7 +346,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
 
         {/* Hobbies */}
         <ScrapCard
-          className="top-[590px] left-[280px] w-[335px] h-[165px]"
+          className="top-[531px] left-[252px] w-[302px] h-[148px]"
           rotate={-2}
           delay={0.3}
           onClick={() => onEnter("about")}
@@ -354,7 +357,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
 
         {/* Skills */}
         <ScrapCard
-          className="top-[100px] left-[1115px] w-[350px] h-[275px]"
+          className="top-[90px] left-[1004px] w-[315px] h-[248px]"
           rotate={2}
           delay={0.2}
           onClick={() => onEnter("skills")}
@@ -363,16 +366,16 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           <SkillsCard />
         </ScrapCard>
 
-        <div className="absolute top-[80px] left-[1445px] text-3xl rotate-12 opacity-80">
+        <div className="absolute top-[72px] left-[1300px] text-3xl rotate-12 opacity-80">
           📎
         </div>
-        <div className="absolute top-[85px] left-[1090px] text-3xl -rotate-12 opacity-80">
+        <div className="absolute top-[76px] left-[981px] text-3xl -rotate-12 opacity-80">
           🌿
         </div>
 
         {/* Projects */}
         <ScrapCard
-          className="top-[500px] left-[1035px] w-[400px] h-[250px]"
+          className="top-[450px] left-[932px] w-[360px] h-[225px]"
           rotate={2}
           delay={0.35}
           onClick={() => onEnter("project")}
@@ -383,50 +386,50 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
 
         {/* Polaroids */}
         <motion.div
-          className="absolute top-[430px] left-[1250px] w-[92px] bg-white p-2 pb-3.5 shadow-lg"
+          className="absolute top-[387px] left-[1125px] w-[83px] bg-white p-2 pb-3 shadow-lg"
           style={{ rotate: "-6deg" }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
           whileHover={{ rotate: 0, scale: 1.08, zIndex: 40 }}
         >
-          <div className="relative w-full h-[88px] overflow-hidden bg-amber-bg">
+          <div className="relative w-full h-[79px] overflow-hidden bg-amber-bg">
             <Image src="/images/illustrated-avatar.jpg" alt="" fill className="object-cover" />
           </div>
         </motion.div>
         <motion.div
-          className="absolute top-[418px] left-[1345px] w-[92px] bg-white p-2 pb-3.5 shadow-lg"
+          className="absolute top-[376px] left-[1210px] w-[83px] bg-white p-2 pb-3 shadow-lg"
           style={{ rotate: "5deg" }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.5 }}
           whileHover={{ rotate: 0, scale: 1.08, zIndex: 40 }}
         >
-          <div className="relative w-full h-[88px] overflow-hidden bg-paper2">
+          <div className="relative w-full h-[79px] overflow-hidden bg-paper2">
             <Image src="/images/cafe-candid.jpg" alt="" fill className="object-cover" />
           </div>
         </motion.div>
 
         {/* Decorative emoji touches */}
-        <div className="absolute top-[675px] left-[940px] text-6xl opacity-90">🐈</div>
-        <div className="absolute top-[715px] left-[1385px] text-4xl rotate-12 opacity-90">
+        <div className="absolute top-[608px] left-[846px] text-6xl opacity-90">🐈</div>
+        <div className="absolute top-[644px] left-[1246px] text-4xl rotate-12 opacity-90">
           🦋
         </div>
-        <div className="absolute top-[510px] left-[1445px] text-3xl rotate-12 opacity-80">
+        <div className="absolute top-[459px] left-[1300px] text-3xl rotate-12 opacity-80">
           💿
         </div>
 
-        <Star className="top-[675px] left-[195px]" size={18} delay={0.5} />
-        <Star className="top-[725px] left-[220px]" size={14} delay={0.55} />
-        <Star className="top-[775px] left-[200px]" size={16} delay={0.6} />
+        <Star className="top-[608px] left-[176px]" size={18} delay={0.5} />
+        <Star className="top-[652px] left-[198px]" size={14} delay={0.55} />
+        <Star className="top-[698px] left-[180px]" size={16} delay={0.6} />
 
-        <div className="absolute top-[700px] left-[620px] text-5xl rotate-12 opacity-90">
+        <div className="absolute top-[630px] left-[558px] text-5xl rotate-12 opacity-90">
           🌸
         </div>
 
-        {/* Enter button */}
+        {/* Enter button — centered under the headline */}
         <motion.div
-          className="absolute top-[825px] left-[700px]"
+          className="absolute top-[742px] left-1/2 -translate-x-1/2"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.5 }}
