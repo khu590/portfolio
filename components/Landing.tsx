@@ -134,11 +134,11 @@ function AboutCard() {
 
 function GoalsCard() {
   return (
-    <div className="bg-scrap-cream border-2 border-scrap-rosedark/40 shadow-md w-full h-full p-4">
-      <p className="font-hand text-xl text-scrap-rosedark font-bold border-b-2 border-scrap-rosedark/30 pb-1 mb-3">
+    <div className="bg-scrap-cream border-2 border-scrap-rosedark/40 shadow-md w-full h-full p-4 overflow-hidden">
+      <p className="font-hand text-lg text-scrap-rosedark font-bold border-b-2 border-scrap-rosedark/30 pb-1 mb-2">
         GOALS:
       </p>
-      <ul className="font-hand text-sm text-inksoft/80 space-y-2">
+      <ul className="font-hand text-[0.8rem] leading-tight text-inksoft/80 space-y-1">
         <li>1. MSc Data Analytics — 1:1</li>
         <li>2. Ship applied ML projects</li>
         <li>3. Land an AI/data role</li>
@@ -256,27 +256,34 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           transformOrigin: "center center",
         }}
       >
-        {/* ── Headline — centered on the canvas, bigger ── */}
-        <motion.p
-          className="absolute top-[228px] left-1/2 -translate-x-1/2 font-hand text-3xl text-scrap-pink whitespace-nowrap"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          Hello! I am
-        </motion.p>
+        {/* ── Headline — centered on the canvas, bigger ──
+             Centering uses a plain wrapper div so Framer Motion's own
+             animated transform (on the inner element) never overwrites
+             the Tailwind translate(-50%) needed for centering. */}
+        <div className="absolute top-[228px] left-1/2 -translate-x-1/2">
+          <motion.p
+            className="font-hand text-3xl text-scrap-pink whitespace-nowrap text-center"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            Hello! I am
+          </motion.p>
+        </div>
 
-        <motion.h1
-          className="absolute top-[270px] left-1/2 -translate-x-1/2 w-[480px] font-script text-[5.5rem] leading-[1.05] text-scrap-rosedark text-center"
-          style={{ textShadow: "3px 4px 0px rgba(216,141,160,0.45)" }}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-        >
-          {profile.name.split(" ")[0]}
-          <br />
-          {profile.name.split(" ")[1]}
-        </motion.h1>
+        <div className="absolute top-[270px] left-1/2 -translate-x-1/2 w-[480px]">
+          <motion.h1
+            className="font-script text-[5.5rem] leading-[1.05] text-scrap-rosedark text-center"
+            style={{ textShadow: "3px 4px 0px rgba(216,141,160,0.45)" }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+          >
+            {profile.name.split(" ")[0]}
+            <br />
+            {profile.name.split(" ")[1]}
+          </motion.h1>
+        </div>
 
         <Star className="top-[480px] left-[600px]" size={42} delay={0.6} />
         <Star className="top-[355px] left-[940px]" size={26} delay={0.7} />
@@ -335,7 +342,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
 
         {/* Goals */}
         <ScrapCard
-          className="top-[486px] left-[76px] w-[176px] h-[176px]"
+          className="top-[486px] left-[76px] w-[176px] h-[222px]"
           rotate={-3}
           delay={0.25}
           onClick={() => onEnter("education")}
@@ -428,14 +435,15 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
         </div>
 
         {/* Enter button — centered under the headline */}
-        <motion.div
-          className="absolute top-[742px] left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.5 }}
-        >
-          <EnterButton onClick={() => onEnter()} />
-        </motion.div>
+        <div className="absolute top-[742px] left-1/2 -translate-x-1/2">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+          >
+            <EnterButton onClick={() => onEnter()} />
+          </motion.div>
+        </div>
       </div>
     </div>
   );
@@ -584,16 +592,17 @@ export default function Landing({
 }) {
   return (
     <motion.div
-      className="fixed inset-0 z-50 overflow-y-auto overflow-x-hidden bg-scrap-bg paper-texture"
+      className="fixed inset-0 z-50 bg-scrap-bg paper-texture"
       exit={{ opacity: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
     >
       {/* Mobile: stacked journal layout, scrolls naturally */}
-      <div className="md:hidden">
+      <div className="md:hidden h-full overflow-y-auto overflow-x-hidden">
         <MobileBoard onEnter={onEnter} />
       </div>
 
-      {/* Desktop/laptop: fixed-aspect board, scaled to fit the viewport exactly */}
-      <div className="hidden md:block w-full h-full">
+      {/* Desktop/laptop: fixed-aspect board, scaled to fit the viewport exactly.
+          No scrolling here by design — the whole board always fits on one screen. */}
+      <div className="hidden md:block w-screen h-screen overflow-hidden">
         <DesktopBoard onEnter={onEnter} />
       </div>
     </motion.div>
