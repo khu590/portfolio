@@ -118,15 +118,13 @@ function ContactNote({ onClick }: { onClick: () => void }) {
 
 function AboutCard() {
   return (
-    <div className="bg-scrap-pink/95 shadow-xl rounded-sm w-full h-full p-6 flex flex-col">
-      <p className="font-hand text-3xl text-white mb-2">
-        About
-        <br />
-        me
+    <div className="bg-scrap-pink/95 shadow-md rounded-sm w-full h-full p-6 flex flex-col">
+      <p className="font-mono font-bold text-lg text-white mb-2 tracking-tight">
+        About me
       </p>
-      <p className="font-hand text-base text-white/85 leading-snug mt-auto">
-        Data Analyst → AI/ML engineer. Production SQL systems + an MSc in
-        Data Analytics. Click to read more →
+      <p className="font-mono text-xs text-white/85 leading-relaxed mt-auto">
+        Data Analyst → AI/ML engineer. 2 yrs production systems at SocGen +
+        MSc Data Analytics, DCU. Click to read more →
       </p>
     </div>
   );
@@ -134,35 +132,32 @@ function AboutCard() {
 
 function GoalsCard() {
   return (
-    <div className="bg-scrap-cream border-2 border-scrap-rosedark/40 shadow-md w-full h-full p-4 overflow-hidden">
-      <p className="font-hand text-lg text-scrap-rosedark font-bold border-b-2 border-scrap-rosedark/30 pb-1 mb-2">
-        GOALS:
+    <div className="bg-scrap-cream border border-scrap-rosedark/30 shadow-sm w-full h-full p-4 overflow-hidden">
+      <p className="font-mono text-xs text-scrap-rosedark font-bold border-b border-scrap-rosedark/20 pb-1 mb-2 tracking-widest uppercase">
+        2025–26
       </p>
-      <ul className="font-hand text-[0.8rem] leading-tight text-inksoft/80 space-y-1">
-        <li>1. MSc Data Analytics — 1:1</li>
-        <li>2. Ship applied ML projects</li>
-        <li>3. Land an AI/data role</li>
-        <li>4. Keep learning, always</li>
-        <li>5. Build things that matter</li>
+      <ul className="font-mono text-[0.7rem] leading-snug text-inksoft/80 space-y-1.5">
+        <li>→ MSc Data Analytics, DCU</li>
+        <li>→ Applied ML projects</li>
+        <li>→ AI/data engineering role</li>
+        <li>→ XAI research</li>
+        <li>→ Build things that matter</li>
       </ul>
     </div>
   );
 }
 
-function HobbiesCard() {
+function ConnectCard() {
   return (
-    <div className="relative bg-[#F3DCC0] shadow-lg w-full h-full border-2 border-[#1B3A6B] flex items-center justify-center">
-      <div
-        className="absolute inset-x-0 top-0 h-1.5"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, #C1272D 0 14px, transparent 14px 28px), repeating-linear-gradient(45deg, #1B3A6B 0 14px, transparent 14px 28px)",
-          backgroundPosition: "0 0, 0 6px",
-          backgroundSize: "100% 6px",
-          backgroundRepeat: "no-repeat",
-        }}
-      />
-      <p className="font-hand text-2xl text-scrap-rosedark">Hobbies</p>
+    <div className="bg-paper border border-line shadow-sm w-full h-full p-4 flex flex-col justify-between">
+      <p className="font-mono text-xs text-scrap-rosedark font-bold tracking-widest uppercase mb-3">
+        Let's connect
+      </p>
+      <div className="flex flex-col gap-1.5">
+        <p className="font-mono text-[0.65rem] text-inksoft/70">✉ khushi.n.bijkal@gmail.com</p>
+        <p className="font-mono text-[0.65rem] text-inksoft/70">⌥ github.com/khu590</p>
+        <p className="font-mono text-[0.65rem] text-inksoft/70">in linkedin.com/in/khushi-bijkal</p>
+      </div>
     </div>
   );
 }
@@ -340,7 +335,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           <AboutCard />
         </ScrapCard>
 
-        {/* Goals */}
+        {/* Goals / 2025-26 */}
         <ScrapCard
           className="top-[486px] left-[76px] w-[176px] h-[222px]"
           rotate={-3}
@@ -351,15 +346,15 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           <GoalsCard />
         </ScrapCard>
 
-        {/* Hobbies */}
+        {/* Let's Connect */}
         <ScrapCard
           className="top-[531px] left-[252px] w-[302px] h-[148px]"
           rotate={-2}
           delay={0.3}
-          onClick={() => onEnter("about")}
-          ariaLabel="Go to about section"
+          onClick={() => onEnter("contact")}
+          ariaLabel="Go to contact section"
         >
-          <HobbiesCard />
+          <ConnectCard />
         </ScrapCard>
 
         {/* Skills */}
@@ -417,7 +412,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           </div>
         </motion.div>
 
-        {/* Decorative emoji touches */}
+        {/* Decorative emoji */}
         <div className="absolute top-[608px] left-[846px] text-6xl opacity-90">🐈</div>
         <div className="absolute top-[644px] left-[1246px] text-4xl rotate-12 opacity-90">
           🦋
@@ -434,7 +429,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           🌸
         </div>
 
-        {/* Enter button — centered under the headline */}
+        {/* Enter button */}
         <div className="absolute top-[742px] left-1/2 -translate-x-1/2">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -548,10 +543,10 @@ function MobileBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           rotate={3}
           hoverRotate={0}
           delay={0.3}
-          onClick={() => onEnter("about")}
-          ariaLabel="Go to about section"
+          onClick={() => onEnter("contact")}
+          ariaLabel="Go to contact section"
         >
-          <HobbiesCard />
+          <ConnectCard />
         </ScrapCard>
 
         <ScrapCard
@@ -566,7 +561,7 @@ function MobileBoard({ onEnter }: { onEnter: (id?: string) => void }) {
         </ScrapCard>
       </div>
 
-      {/* small decorative touches, lightweight on mobile */}
+      {/* decorative touches */}
       <div className="flex items-center gap-6 text-3xl opacity-90 mt-1">
         <span>🐈</span>
         <span>🌸</span>
