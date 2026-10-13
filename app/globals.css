@@ -7,6 +7,7 @@
   --font-serif: "Source Serif 4", Georgia, serif;
   --font-hand: "Caveat", cursive;
   --font-script: "Pacifico", cursive;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
 html {
@@ -49,3 +50,23 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+/* faint dotted grid used behind the cards (tanvishiyekar.com style) */
+.dot-grid {
+  background-color: #f6eee9;
+  background-image: radial-gradient(rgba(168, 66, 94, 0.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* dark mode: Manhattan at night — deep plum page, rose dots */
+.dark .dot-grid {
+  background-color: #17131f;
+  background-image: radial-gradient(rgba(217, 141, 160, 0.13) 1px, transparent 1px);
+}
+.dark ::selection {
+  background: #d98da0;
+  color: #17131f;
+}
+
+/* Keep anchored sections clear of the fixed top nav */
+section[id] { scroll-margin-top: 96px; }

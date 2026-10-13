@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -34,6 +35,7 @@ module.exports = {
         },
       },
       fontFamily: {
+        sans: ['var(--font-sans)', 'Helvetica Neue', 'Arial', 'sans-serif'],
         mono: ['var(--font-mono)', 'monospace'],
         serif: ['var(--font-serif)', 'serif'],
         script: ['var(--font-script)', 'cursive'],

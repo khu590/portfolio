@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Khushi Bijkal — Data & AI Engineer",
+  title: "Khushi Bijkal — Data Analyst · DevOps",
   description:
-    "Data Analyst turned AI/ML engineer. Production SQL systems at Société Générale, MSc Data Analytics at DCU.",
+    "Data analyst and DevOps analyst in Dublin, Ireland. 2+ years of production support and data validation at Société Générale, MSc Computing (Data Analytics) at DCU (2:1).",
 };
 
 // Fonts are loaded via a standard <link> tag rather than next/font/google.
@@ -28,7 +28,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Caveat:wght@500;600;700&family=Pacifico&display=swap"
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Caveat:wght@500;600;700&family=Pacifico&family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
