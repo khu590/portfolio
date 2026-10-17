@@ -70,3 +70,19 @@ html {
 
 /* Keep anchored sections clear of the fixed top nav */
 section[id] { scroll-margin-top: 96px; }
+
+/* ── Recruiter view (/cv) print styles ── */
+@media print {
+  @page { size: A4; margin: 14mm 16mm; }
+  .cv-page { background: none !important; color: #000 !important; min-height: 0 !important; }
+  .cv-page * { color: #000 !important; background: none !important; box-shadow: none !important; }
+  .cv-page main { max-width: none !important; padding: 0 !important; }
+  .cv-page .cv-actions { display: none !important; }
+  .cv-page .cv-bullet { background: #000 !important; }
+  .cv-page h1 { font-size: 26pt !important; margin-top: 4pt !important; }
+  .cv-page section { margin-top: 12pt !important; }
+  .cv-page article, .cv-page li { break-inside: avoid; }
+  .cv-page h2, .cv-page h3 { break-after: avoid; }
+  .cv-page a { text-decoration: none !important; }
+  .cv-page { font-size: 10pt; line-height: 1.4; }
+}

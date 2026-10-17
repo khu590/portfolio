@@ -79,7 +79,7 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500" />
               </span>
-              Dublin, Ireland · Data Analyst · DevOps · Open to roles
+              Based in Dublin · Open to data and DevOps roles
             </motion.p>
             <motion.h1 variants={item} className="font-script text-5xl leading-tight text-scrap-rosedark dark:text-[#D98DA0] sm:text-6xl">
               {profile.name}
@@ -118,7 +118,7 @@ export function Hero() {
             <Image src="/images/hero-wall-portrait.jpg" alt={`Portrait of ${profile.name}`} fill sizes="300px" className="object-cover" priority />
           </div>
           <figcaption className="mt-3 text-center font-sans text-sm font-medium text-inksoft dark:text-[#B9A9B8]">
-            Bengaluru → Dublin <span className="text-scrap-rose dark:text-[#E07A98]">♡</span> NYC at heart
+            From Bengaluru, now in Dublin, a bit in love with NYC <span className="text-scrap-rose dark:text-[#E07A98]">♡</span>
           </figcaption>
         </motion.figure>
       </motion.div>
@@ -167,7 +167,7 @@ export function Impact() {
   return (
     <section id="impact">
       <motion.div {...reveal}>
-        <SectionLabel>Impact in numbers</SectionLabel>
+        <SectionLabel>A few numbers</SectionLabel>
       </motion.div>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5 [&>*:last-child]:col-span-2 md:[&>*:last-child]:col-span-1">
         {stats.map((s, i) => {
@@ -239,8 +239,8 @@ export function Skills() {
     <section id="skills">
       <style>{marqueeCss}</style>
       <motion.div {...reveal} className="mb-6">
-        <SectionLabel>Toolkit</SectionLabel>
-        <h2 className="font-serif text-3xl font-semibold text-ink dark:text-[#F3E9EE] sm:text-4xl">Tech stack</h2>
+        <SectionLabel>What I use</SectionLabel>
+        <h2 className="font-serif text-3xl font-semibold text-ink dark:text-[#F3E9EE] sm:text-4xl">Skills</h2>
       </motion.div>
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
         {skills.map((g, i) => (
@@ -269,7 +269,7 @@ export function Skills() {
 
       <motion.div {...reveal} className="mt-8">
         <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-inksoft dark:text-[#B9A9B8]">
-          Keywords recruiters search for <span className="text-scrap-rose dark:text-[#E07A98]">· all backed by my CV</span>
+          Quick keyword list <span className="text-scrap-rose dark:text-[#E07A98]">· everything here is on my CV</span>
         </p>
         <div
           className="kb-marquee relative space-y-3 overflow-hidden rounded-[20px] bg-scrap-cream/50 dark:bg-[#2A2240]/50 py-4 ring-1 ring-black/5 dark:ring-white/10 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]"
@@ -318,7 +318,7 @@ export function Credentials() {
     <section id="credentials">
       <motion.div {...reveal} className="mb-6">
         <SectionLabel>Recognition</SectionLabel>
-        <h2 className="font-serif text-3xl font-semibold text-ink dark:text-[#F3E9EE] sm:text-4xl">Credentials</h2>
+        <h2 className="font-serif text-3xl font-semibold text-ink dark:text-[#F3E9EE] sm:text-4xl">Awards and certifications</h2>
       </motion.div>
       <div className="grid gap-5 md:grid-cols-[1fr_1.2fr]">
         <div className="flex flex-col gap-8">
@@ -335,7 +335,7 @@ export function Credentials() {
                 <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-scrap-rosedark dark:text-[#D98DA0]">★ {a.org}</p>
                 <h3 className="mt-1 font-serif text-xl font-semibold text-ink dark:text-[#F3E9EE]">{a.title}</h3>
                 <blockquote className="mt-3 font-serif text-[15px] italic leading-relaxed text-inksoft dark:text-[#B9A9B8]">{a.citation}</blockquote>
-                <figcaption className="mt-3 font-sans text-xs text-muted dark:text-[#B9A9B8]">— from {a.from}, via LinkedIn</figcaption>
+                <figcaption className="mt-3 font-sans text-xs text-muted dark:text-[#B9A9B8]">From {a.from}, shared on LinkedIn</figcaption>
               </figure>
             </motion.div>
           ))}
@@ -373,15 +373,15 @@ export function Contact() {
             <Bullet key={l} letter={l} color={c} text={t} />
           ))}
         </div>
-        <h2 className="max-w-2xl font-serif text-4xl font-semibold leading-tight sm:text-5xl">Let&apos;s build something in Dublin.</h2>
+        <h2 className="max-w-2xl font-serif text-4xl font-semibold leading-tight sm:text-5xl">Get in touch</h2>
         <p className="mt-4 max-w-xl font-sans text-base text-white/75">
-          Open to data analyst, data engineering and DevOps roles in Ireland. The fastest way to reach me is email.
+          I&apos;m looking for data analyst, data engineering and DevOps roles in Ireland. Email is the best way to reach me.
         </p>
         <div className="mt-8">
           <LinkButtons dark />
         </div>
         <p className="mt-10 border-t border-white/15 pt-5 font-sans text-xs text-white/60">
-          © 2026 Khushi Bijkal · Made in Dublin with a New York state of mind
+          © 2026 Khushi Bijkal · Dublin, Ireland
         </p>
       </motion.div>
     </section>

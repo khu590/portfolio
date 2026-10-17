@@ -11,9 +11,9 @@ import { ThemeToggle } from "./theme";
 
 const LINKS = [
   { id: "about", label: "About" },
-  { id: "impact", label: "Impact" },
+  { id: "impact", label: "Numbers" },
   { id: "project", label: "Projects" },
-  { id: "education", label: "Journey" },
+  { id: "education", label: "Experience" },
   { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },
 ];
@@ -53,6 +53,13 @@ export default function TopNav() {
             </li>
           ))}
         </ul>
+
+        <a
+          href="/cv"
+          className="hidden rounded-full border border-scrap-rose/40 px-3 py-1 text-xs font-medium text-scrap-rosedark transition-colors hover:bg-scrap-rose hover:text-white dark:text-[#D98DA0] sm:inline-block"
+        >
+          Résumé
+        </a>
 
         <span className="hidden h-5 w-px bg-line dark:bg-white/15 sm:block" aria-hidden />
         <span className="hidden items-center gap-1.5 whitespace-nowrap text-xs text-inksoft dark:text-[#B9A9B8] sm:flex" title="Local time in Dublin, Ireland">
@@ -96,6 +103,11 @@ export default function TopNav() {
                   </button>
                 </li>
               ))}
+              <li>
+                <a href="/cv" className="block w-full rounded-xl px-3 py-2 text-left font-medium text-scrap-rosedark hover:bg-scrap-rose/10 dark:text-[#D98DA0]">
+                  Résumé (recruiter view)
+                </a>
+              </li>
             </motion.ul>
           )}
         </AnimatePresence>

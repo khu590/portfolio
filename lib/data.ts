@@ -6,7 +6,7 @@
 export const profile = {
   name: "Khushi Bijkal",
   role: "Data Analyst · DevOps & Production Support",
-  tagline: "I turn messy production data into stable systems and clear decisions.",
+  tagline: "I work with data and keep systems running. I like finding out why things break.",
   location: "Dublin, Ireland",
   email: "khushi.n.bijkal@gmail.com",
   phone: "+353 89 202 8094",
@@ -16,17 +16,17 @@ export const profile = {
 
 // Big-number tiles on the Impact section.
 export const stats = [
-  { value: "25+", label: "production incidents resolved weekly in live banking systems" },
-  { value: "2+ yrs", label: "data validation & production support at Société Générale" },
-  { value: "116k+", label: "code samples analysed with CodeBERT for my MSc dissertation" },
-  { value: "2:1", label: "MSc Computing (Data Analytics), Dublin City University" },
-  { value: "2", label: "workplace awards — Spot Award & New Joinee of the Year" },
+  { value: "25+", label: "production incidents I resolved each week at Société Générale" },
+  { value: "2+ yrs", label: "in production support and data validation" },
+  { value: "116k+", label: "code samples in my MSc dissertation" },
+  { value: "2:1", label: "MSc in Computing (Data Analytics) at DCU" },
+  { value: "2", label: "awards at work: Spot Award and New Joinee of the Year" },
 ];
 
 // Short storytelling bio, one paragraph per entry.
 export const bio = [
-  "For two years at Société Générale I kept live banking systems healthy: resolving 25+ production incidents a week with SQL, Linux and log analysis, running root cause analysis with infrastructure and development teams, and validating data so the numbers people relied on were right.",
-  "I moved from Bengaluru to Dublin for an MSc in Data Analytics at DCU (2:1), where my dissertation used CodeBERT, GraphCodeBERT and explainable AI to detect software vulnerabilities. I'm now looking for data analyst, data engineering and DevOps roles in Ireland.",
+  "I spent two years at Société Générale in Bengaluru supporting live banking systems. Most weeks I resolved 25+ production incidents using SQL, Linux and log analysis. When the same issue kept coming back, I worked with the infrastructure and development teams to find the root cause. I also validated data with SQL so people could trust the numbers.",
+  "In 2025 I moved to Dublin for an MSc in Computing (Data Analytics) at DCU and finished with a 2:1. For my dissertation I used CodeBERT, GraphCodeBERT and explainable AI to detect software vulnerabilities. I'm now looking for data analyst, data engineering or DevOps roles in Ireland.",
 ];
 
 export const skills = [
@@ -56,7 +56,7 @@ export const skills = [
     items: ["Java", "Spring Boot", "React", "Angular", "RESTful APIs", "Flask", "MySQL", "MongoDB", "Hadoop"],
   },
   {
-    category: "Ways of Working",
+    category: "How I work",
     color: "purple",
     items: ["Requirements Gathering", "UAT", "Defect Management", "Technical Documentation", "Jira", "Confluence", "Postman", "GDPR & Data Ethics"],
   },
@@ -97,7 +97,7 @@ export const experience = [
   {
     type: "work" as const,
     place: "bengaluru" as const,
-    role: "Analyst — DevOps",
+    role: "Analyst, DevOps",
     company: "Société Générale",
     sub: "Global Solution Centre · Bengaluru, India",
     date: "Aug 2023 – Aug 2025",
@@ -152,34 +152,34 @@ export const projects = [
     title: "Automated Software Vulnerability Detection with Explainable AI",
     subtitle: "MSc Dissertation · Responsible AI · NLP for Code",
     description:
-      "Fine-tuned CodeBERT and GraphCodeBERT on 116,000+ samples from the Juliet Test Suite to detect software vulnerabilities, then applied attention-based explainable AI to interpret predictions and highlight the vulnerable code regions. Compared classical ML and transformer approaches with standard classification metrics, and ran user studies to assess how useful the explanations were.",
+      "I fine-tuned CodeBERT and GraphCodeBERT on 116,000+ samples from the Juliet Test Suite to detect software vulnerabilities. I then used attention-based explainable AI to show which parts of the code led to each prediction. I compared classical ML with the transformer models using standard classification metrics, and ran user studies to see whether the explanations actually helped people.",
     stack: ["Python", "CodeBERT", "GraphCodeBERT", "Explainable AI", "Juliet Test Suite", "User Studies"],
     metrics: [
       { value: "116k+", label: "code samples" },
-      { value: "2", label: "transformer models" },
-      { value: "XAI", label: "attention explanations" },
+      { value: "2", label: "transformer models compared" },
+      { value: "XAI", label: "explained with attention" },
     ],
   },
   {
     title: "Predictive Log Monitoring",
     subtitle: "Société Générale · ML for Production Support",
     description:
-      "A machine learning solution that monitors website logs and raises alerts before failures occur. Logs are turned into IDF-weighted vectors and grouped with hierarchical clustering; a Flask app shows predicted faulty logs and collects feedback to keep improving the model.",
+      "During my internship I built a machine learning tool that watches website logs and raises an alert before a failure happens. It turns logs into IDF-weighted vectors and groups them with hierarchical clustering. A small Flask app shows the logs it predicts are faulty and collects feedback so the model keeps improving.",
     stack: ["Python", "TF-IDF", "Hierarchical Clustering", "Flask", "Log Analysis"],
     metrics: [
-      { value: "Early", label: "failure alerts" },
-      { value: "Flask", label: "feedback app" },
-      { value: "Unsupervised", label: "clustering" },
+      { value: "Early", label: "alerts before failures" },
+      { value: "Flask", label: "app with feedback" },
+      { value: "Unsupervised", label: "hierarchical clustering" },
     ],
   },
   {
     title: "Medical Image Classification System",
     subtitle: "Published in IJRAR · Deep Learning · Healthcare",
     description:
-      "A CNN that classifies MRI scans for brain tumour detection, integrated into a Flask web application for image upload and prediction. Validated and evaluated with standard performance metrics; published in the International Journal of Research and Analytical Reviews (IJRAR), May 2023.",
+      "My final-year project: a CNN that classifies MRI scans to detect brain tumours. You upload an image through a Flask web app and it returns a prediction. I evaluated it with standard performance metrics, and the work was published in the International Journal of Research and Analytical Reviews (IJRAR) in May 2023.",
     stack: ["Python", "TensorFlow / Keras", "CNNs", "Flask", "MRI Imaging"],
     metrics: [
-      { value: "CNN", label: "MRI classifier" },
+      { value: "CNN", label: "for MRI scans" },
       { value: "IJRAR", label: "published 2023" },
       { value: "Flask", label: "web app" },
     ],

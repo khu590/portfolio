@@ -82,7 +82,7 @@ function Folder() {
       </div>
     </div>
     <p className="mt-4 text-center font-mono text-sm font-semibold uppercase tracking-[0.35em] text-scrap-rosedark dark:text-[#D98DA0] md:text-base" aria-hidden="true">
-      My Projects
+      My projects
     </p>
     </div>
   );
@@ -124,7 +124,7 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
         </div>
       )}
       <div className="flex items-center justify-between px-4 py-2.5">
-        <span className="font-mono text-[10px] uppercase tracking-wider text-inksoft dark:text-[#B9A9B8]">View details</span>
+        <span className="font-mono text-[10px] uppercase tracking-wider text-inksoft dark:text-[#B9A9B8]">View project</span>
         <span className="text-scrap-rose dark:text-[#E07A98] transition-transform group-hover:translate-x-1">→</span>
       </div>
     </button>
@@ -296,7 +296,7 @@ function ProjectModal({ project, index, onClose }: { project: Project; index: nu
               )}
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noreferrer" className="rounded-full bg-scrap-rose px-5 py-2 text-sm text-white hover:bg-scrap-rosedark">
-                  {/\.pdf($|[?#])/i.test(project.demo) ? "Read the paper ↗" : "Live demo ↗"}
+                  {/\.pdf($|[?#])/i.test(project.demo) ? "Read the paper ↗" : "View demo ↗"}
                 </a>
               )}
             </div>
@@ -338,7 +338,7 @@ export default function ProjectsFolder() {
   const heading = (
     <div className="mb-6 text-center">
       <p className="font-mono text-xs uppercase tracking-[0.3em] text-scrap-rose dark:text-[#E07A98]">Selected work</p>
-      <h2 className="mt-2 font-serif text-4xl text-ink dark:text-[#F3E9EE] md:text-5xl">Things I&apos;ve built</h2>
+      <h2 className="mt-2 font-serif text-4xl text-ink dark:text-[#F3E9EE] md:text-5xl">Projects</h2>
     </div>
   );
 

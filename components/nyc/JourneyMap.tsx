@@ -176,8 +176,8 @@ export default function JourneyMap() {
         className="mb-6 flex flex-wrap items-end justify-between gap-3"
       >
         <div>
-          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-scrap-rosedark dark:text-[#D98DA0]">The route so far</p>
-          <h2 className="font-serif text-3xl font-semibold text-ink dark:text-[#F3E9EE] sm:text-4xl">Journey</h2>
+          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-scrap-rosedark dark:text-[#D98DA0]">Bengaluru to Dublin</p>
+          <h2 className="font-serif text-3xl font-semibold text-ink dark:text-[#F3E9EE] sm:text-4xl">Work and study</h2>
         </div>
         <div className="flex items-center gap-4 font-sans text-xs text-inksoft dark:text-[#B9A9B8]">
           <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full" style={{ background: ROSE }} /> Work</span>
@@ -237,7 +237,7 @@ export default function JourneyMap() {
 
             {/* Map chrome */}
             <span className="absolute left-3 top-3 rounded-full bg-white/95 dark:bg-[#211b2e]/95 px-3 py-1 font-sans text-xs font-semibold text-ink dark:text-[#F3E9EE] shadow ring-1 ring-black/5 dark:ring-white/10">
-              📍 You are here: Dublin
+              📍 Now in Dublin
             </span>
             <div className="absolute right-3 top-3 flex flex-col overflow-hidden rounded-xl bg-white/95 dark:bg-[#211b2e]/95 shadow ring-1 ring-black/5 dark:ring-white/10">
               <button type="button" aria-label="Zoom in" onClick={() => setZoom((z) => Math.min(2, z + 0.5))} className="h-8 w-8 font-sans text-lg leading-none text-ink dark:text-[#F3E9EE] hover:bg-scrap-cream dark:hover:bg-white/10">+</button>
