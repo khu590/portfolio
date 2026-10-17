@@ -7,7 +7,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
-const NAME = ["KHUSHI", "BIJKAL"];
+const NAME = ["Khushi", "Bijkal"];
 const DURATION = 1800; // ms for the counter to reach 100
 
 export default function IntroLoader() {
@@ -62,7 +62,7 @@ export default function IntroLoader() {
                 {word.split("").map((ch, i) => (
                   <motion.span
                     key={i}
-                    className="inline-block font-serif text-[15vw] leading-[0.95] md:text-[9vw]"
+                    className="inline-block py-[0.12em] font-script text-[13vw] leading-[1.15] text-scrap-pink md:text-[6.5vw]"
                     initial={{ y: "110%" }}
                     animate={{ y: "0%" }}
                     transition={{ delay: 0.15 + (wi * 6 + i) * 0.045, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}

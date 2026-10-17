@@ -5,7 +5,7 @@
 
 export const profile = {
   name: "Khushi Bijkal",
-  role: "Data Analyst · DevOps & Production Support",
+  role: "Data Analyst · DevOps",
   tagline: "I work with data and keep systems running. I like finding out why things break.",
   location: "Dublin, Ireland",
   email: "khushi.n.bijkal@gmail.com",
@@ -18,7 +18,7 @@ export const profile = {
 // Big-number tiles on the Impact section.
 export const stats = [
   { value: "25+", label: "production incidents I resolved each week at Société Générale" },
-  { value: "2+ yrs", label: "in production support and data validation" },
+  { value: "2+ yrs", label: "as a DevOps analyst, working on data validation" },
   { value: "116k+", label: "code samples in my MSc dissertation" },
   { value: "2:1", label: "MSc in Computing (Data Analytics) at DCU" },
   { value: "2", label: "awards at work: Spot Award and New Joinee of the Year" },
