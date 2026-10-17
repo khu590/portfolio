@@ -1,4 +1,4 @@
-// components/nyc/Butterflies.tsx
+// components/portfolio/Butterflies.tsx
 // A few soft butterflies drifting across the page behind the content.
 // Wings flap with a scaleX loop; paths are fixed so SSR and client match.
 "use client";

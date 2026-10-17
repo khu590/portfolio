@@ -1,12 +1,11 @@
-// components/nyc/NycPage.tsx
-// The portfolio behind the landing page: NYC-flavoured card layout on a
+// components/portfolio/PortfolioPage.tsx
+// The portfolio behind the landing page: card layout on a
 // blush dotted grid, with a floating nav, butterflies and a lo-fi toggle.
 "use client";
 
 import { useEffect } from "react";
 import TopNav from "./TopNav";
 import Butterflies from "./Butterflies";
-import CityBackdrop from "./CityBackdrop";
 import { ThemeProvider } from "./theme";
 import Cursor from "./Cursor";
 import { useLofi } from "./JazzPlayer";
@@ -41,7 +40,7 @@ function MusicButton() {
   );
 }
 
-export default function NycPage({ initialTarget }: { initialTarget?: string }) {
+export default function PortfolioPage({ initialTarget }: { initialTarget?: string }) {
   useEffect(() => {
     document.body.style.overflow = "auto";
     if (!initialTarget) return;
@@ -52,7 +51,6 @@ export default function NycPage({ initialTarget }: { initialTarget?: string }) {
   return (
     <ThemeProvider>
     <div className="dot-grid relative min-h-screen font-sans text-ink dark:text-[#F3E9EE]">
-      <CityBackdrop />
       <Butterflies />
       <TopNav />
       <div className="relative z-10 mx-auto flex max-w-[1100px] flex-col gap-16 px-4 pb-24 md:gap-24">

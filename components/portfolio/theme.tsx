@@ -1,4 +1,4 @@
-// components/nyc/theme.tsx
+// components/portfolio/theme.tsx
 // Light / dark mode. Defaults to the visitor's system setting, remembers an
 // explicit choice, and toggles the `dark` class on <html> (Tailwind darkMode: "class").
 "use client";

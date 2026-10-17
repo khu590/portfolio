@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Landing from "@/components/Landing";
-import NycPage from "@/components/nyc/NycPage";
+import PortfolioPage from "@/components/portfolio/PortfolioPage";
 import IntroLoader from "@/components/IntroLoader";
 
 export default function Home() {
@@ -39,7 +39,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <NycPage initialTarget={target} />
+          <PortfolioPage initialTarget={target} />
         </motion.main>
       )}
     </>

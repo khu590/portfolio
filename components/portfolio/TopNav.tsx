@@ -1,4 +1,4 @@
-// components/nyc/TopNav.tsx
+// components/portfolio/TopNav.tsx
 // Floating pill nav (tanvishiyekar.com style): avatar + name, section links,
 // and live Dublin time + weather. Collapses to a menu button on mobile.
 "use client";

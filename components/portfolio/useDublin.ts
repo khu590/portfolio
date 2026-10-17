@@ -1,4 +1,4 @@
-// components/nyc/useDublin.ts
+// components/portfolio/useDublin.ts
 // Live clock for any time zone, and current Dublin weather from open-meteo
 // (free, no key). Weather quietly returns null if the request fails.
 "use client";

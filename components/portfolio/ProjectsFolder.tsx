@@ -67,18 +67,13 @@ function Folder() {
       {/* back + tab */}
       <div className="absolute left-0 top-0 h-10 w-[45%] rounded-t-2xl bg-gradient-to-b from-[#C85C7A] to-[#B9506D]" />
       <div className="absolute inset-x-0 bottom-0 top-6 rounded-2xl rounded-tl-none bg-gradient-to-b from-[#C85C7A] to-[#A8425E] shadow-[0_24px_50px_-20px_rgba(168,66,94,0.55)]" />
-      {/* front flap: MetroCard-style sleeve */}
+      {/* front flap */}
       <div className="absolute inset-x-0 bottom-0 top-14 overflow-hidden rounded-2xl bg-gradient-to-b from-[#E7A3B4] to-[#D98DA0] shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_10px_30px_-12px_rgba(168,66,94,0.5)]">
-        {/* magnetic strip */}
-        <div className="absolute inset-x-0 bottom-7 h-7 bg-gradient-to-b from-[#3B2A2F]/80 to-[#1C1B17]/80" />
-        {/* subway bullet sticker */}
+        {/* monogram */}
         <div className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-scrap-rosedark font-sans text-lg font-bold text-white shadow ring-2 ring-white/70 dark:ring-white/15">
           K
         </div>
-        <div className="absolute right-4 top-5 rounded-sm bg-white/85 dark:bg-[#211b2e]/85 px-2 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-scrap-rosedark dark:text-[#D98DA0]">
-          NYC ↔ DUB
-        </div>
-        <div className="absolute left-4 top-16 font-mono text-[10px] uppercase tracking-[0.25em] text-white/80">Portfolio · Fare</div>
+        <div className="absolute left-4 top-16 font-mono text-[10px] uppercase tracking-[0.25em] text-white/80">Selected work</div>
       </div>
     </div>
     <p className="mt-4 text-center font-mono text-sm font-semibold uppercase tracking-[0.35em] text-scrap-rosedark dark:text-[#D98DA0] md:text-base" aria-hidden="true">

@@ -58,7 +58,7 @@ html {
   background-size: 22px 22px;
 }
 
-/* dark mode: Manhattan at night — deep plum page, rose dots */
+/* dark mode: deep plum page, rose dots */
 .dark .dot-grid {
   background-color: #17131f;
   background-image: radial-gradient(rgba(217, 141, 160, 0.13) 1px, transparent 1px);

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion, type Variants } from "framer-motion";
-import NycWallpaper from "../mac/NycWallpaper";
 import JourneyMap from "./JourneyMap";
 import {
   profile,
@@ -24,18 +23,6 @@ const reveal = {
   viewport: { once: true, amount: 0.2 },
   transition: { duration: 0.6, ease: "easeOut" },
 } as const;
-
-function Bullet({ letter, color, text = "#fff" }: { letter: string; color: string; text?: string }) {
-  return (
-    <span
-      aria-hidden
-      className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-sans text-xs font-bold"
-      style={{ background: color, color: text }}
-    >
-      {letter}
-    </span>
-  );
-}
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-scrap-rosedark dark:text-[#D98DA0]">{children}</p>;
@@ -69,10 +56,11 @@ export function Hero() {
     <section id="about" className="pt-24">
       <motion.div variants={stagger} initial="hidden" animate="show" className="grid gap-5 md:grid-cols-[1fr_280px]">
         <motion.div variants={item} className="relative min-h-[520px] overflow-hidden rounded-[28px] shadow-xl">
-          <div className="absolute inset-0">
-            <NycWallpaper />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-br from-[#F3ECE4] via-[#F3ECE4]/85 to-transparent dark:from-[#2A1F38] dark:via-[#2A1F38]/80" />
+          {/* soft blush backdrop: blurred colour blobs, no imagery */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#FBF3EE] via-[#F6E3E6] to-[#EFCFD8] dark:from-[#211b2e] dark:via-[#2A2240] dark:to-[#3A2440]" />
+          <div className="absolute -right-16 -top-16 h-72 w-72 rounded-full bg-scrap-pink/40 blur-3xl dark:bg-[#E07A98]/25" />
+          <div className="absolute -bottom-20 right-24 h-64 w-64 rounded-full bg-scrap-orange/25 blur-3xl dark:bg-[#E8A33D]/15" />
+          <div className="absolute bottom-10 -left-10 h-48 w-48 rounded-full bg-scrap-rose/20 blur-3xl dark:bg-scrap-rose/20" />
           <motion.div variants={stagger} className="relative flex h-full flex-col gap-5 p-6 sm:p-10">
             <motion.p variants={item} className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-inksoft dark:text-[#B9A9B8]">
               <span className="relative flex h-2.5 w-2.5">
@@ -118,7 +106,7 @@ export function Hero() {
             <Image src="/images/hero-wall-portrait.jpg" alt={`Portrait of ${profile.name}`} fill sizes="300px" className="object-cover" priority />
           </div>
           <figcaption className="mt-3 text-center font-sans text-sm font-medium text-inksoft dark:text-[#B9A9B8]">
-            From Bengaluru, now in Dublin, a bit in love with NYC <span className="text-scrap-rose dark:text-[#E07A98]">♡</span>
+            From Bengaluru, now in Dublin <span className="text-scrap-rose dark:text-[#E07A98]">♡</span>
           </figcaption>
         </motion.figure>
       </motion.div>
@@ -358,19 +346,13 @@ export function Credentials() {
 
 /* ───────────── Contact ───────────── */
 export function Contact() {
-  const lines: [string, string, string?][] = [
-    ["A", "#C85C7A"],
-    ["C", "#A8425E"],
-    ["E", "#D98DA0"],
-    ["N", "#F7B500", "#1C1B17"],
-    ["Q", "#E8A33D", "#1C1B17"],
-  ];
+  const dots = ["#C85C7A", "#A8425E", "#D98DA0", "#E8A33D"];
   return (
     <section id="contact" className="pb-10">
       <motion.div {...reveal} className="relative overflow-hidden rounded-[28px] bg-ink dark:bg-[#2A2240] dark:ring-1 dark:ring-white/10 transition-colors duration-500 p-8 text-white shadow-xl sm:p-12">
         <div className="mb-6 flex gap-2">
-          {lines.map(([l, c, t]) => (
-            <Bullet key={l} letter={l} color={c} text={t} />
+          {dots.map((c) => (
+            <span key={c} className="h-3 w-3 rounded-full" style={{ backgroundColor: c }} aria-hidden />
           ))}
         </div>
         <h2 className="max-w-2xl font-serif text-4xl font-semibold leading-tight sm:text-5xl">Get in touch</h2>
