@@ -159,7 +159,7 @@ export default function SeasonalBackdrop() {
         className="absolute inset-x-0 bottom-0 h-[150px] w-full md:h-[220px]"
         viewBox={`0 0 ${W} ${ground}`}
         preserveAspectRatio="xMidYMax slice"
-        style={{ opacity: night ? 0.75 : 0.5 }}
+        style={{ opacity: night ? 0.4 : 0.45 }}
       >
         {SKY.towers.map((t, i) => (
           <g key={i} fill={building}>
@@ -215,7 +215,7 @@ export default function SeasonalBackdrop() {
                   <ellipse cx={t.x} cy={base - t.r * 1.5} rx={t.r * 0.5} ry={3} fill="#FFFFFF" opacity={0.8} />
                 </>
               ) : (
-                <circle cx={t.x} cy={base - t.r * 1.2} r={t.r} fill={look.trees[t.c % look.trees.length]} opacity={night ? 0.55 : 0.85} />
+                <circle cx={t.x} cy={base - t.r * 1.2} r={t.r} fill={look.trees[t.c % look.trees.length]} opacity={night ? 0.45 : 0.8} />
               )}
             </g>
           );
