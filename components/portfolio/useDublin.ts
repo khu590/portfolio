@@ -17,7 +17,7 @@ export function useClock(tz = "Europe/Dublin"): string {
   return time;
 }
 
-export type Weather = { temp: number; emoji: string };
+export type Weather = { temp: number; emoji: string; rain: boolean };
 
 function codeToEmoji(code: number, day: boolean): string {
   if (code === 0) return day ? "☀️" : "🌙";
@@ -35,7 +35,12 @@ export function useDublinWeather(): Weather | null {
     fetch("https://api.open-meteo.com/v1/forecast?latitude=53.35&longitude=-6.26&current=temperature_2m,weather_code,is_day")
       .then((r) => (r.ok ? r.json() : Promise.reject()))
       .then((d) => {
-        if (alive && d?.current) setW({ temp: Math.round(d.current.temperature_2m), emoji: codeToEmoji(d.current.weather_code, d.current.is_day === 1) });
+        if (alive && d?.current) {
+          const code: number = d.current.weather_code;
+          // drizzle, rain, freezing rain, showers, thunderstorms
+          const rain = (code >= 51 && code <= 67) || (code >= 80 && code <= 82) || code >= 95;
+          setW({ temp: Math.round(d.current.temperature_2m), emoji: codeToEmoji(code, d.current.is_day === 1), rain });
+        }
       })
       .catch(() => {});
     return () => {

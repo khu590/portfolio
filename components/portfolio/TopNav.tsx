@@ -58,7 +58,7 @@ export default function TopNav() {
           href="/cv"
           className="hidden rounded-full border border-scrap-rose/40 px-3 py-1 text-xs font-medium text-scrap-rosedark transition-colors hover:bg-scrap-rose hover:text-white dark:text-[#D98DA0] sm:inline-block"
         >
-          Résumé
+          Recruiter view
         </a>
 
         <span className="hidden h-5 w-px bg-line dark:bg-white/15 sm:block" aria-hidden />
@@ -105,7 +105,7 @@ export default function TopNav() {
               ))}
               <li>
                 <a href="/cv" className="block w-full rounded-xl px-3 py-2 text-left font-medium text-scrap-rosedark hover:bg-scrap-rose/10 dark:text-[#D98DA0]">
-                  Résumé (recruiter view)
+                  Recruiter view
                 </a>
               </li>
             </motion.ul>

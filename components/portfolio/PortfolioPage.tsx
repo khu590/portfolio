@@ -1,11 +1,12 @@
 // components/portfolio/PortfolioPage.tsx
 // The portfolio behind the landing page: card layout on a
-// blush dotted grid, with a floating nav, butterflies and a lo-fi toggle.
+// blush dotted grid over a seasonal New York backdrop, with a floating nav and a lo-fi toggle.
 "use client";
 
 import { useEffect } from "react";
 import TopNav from "./TopNav";
 import Butterflies from "./Butterflies";
+import SeasonalBackdrop, { SeasonPicker, SeasonProvider, useSeason } from "./SeasonalBackdrop";
 import { ThemeProvider } from "./theme";
 import Cursor from "./Cursor";
 import { useLofi } from "./JazzPlayer";
@@ -40,6 +41,12 @@ function MusicButton() {
   );
 }
 
+// butterflies only belong in the warmer months
+function SeasonalButterflies() {
+  const { season } = useSeason();
+  return season === "spring" || season === "summer" ? <Butterflies /> : null;
+}
+
 export default function PortfolioPage({ initialTarget }: { initialTarget?: string }) {
   useEffect(() => {
     document.body.style.overflow = "auto";
@@ -50,8 +57,10 @@ export default function PortfolioPage({ initialTarget }: { initialTarget?: strin
 
   return (
     <ThemeProvider>
+    <SeasonProvider>
     <div className="dot-grid relative min-h-screen font-sans text-ink dark:text-[#F3E9EE]">
-      <Butterflies />
+      <SeasonalBackdrop />
+      <SeasonalButterflies />
       <TopNav />
       <div className="relative z-10 mx-auto flex max-w-[1100px] flex-col gap-16 px-4 pb-24 md:gap-24">
         <Hero />
@@ -63,8 +72,10 @@ export default function PortfolioPage({ initialTarget }: { initialTarget?: strin
         <Contact />
       </div>
       <MusicButton />
+      <SeasonPicker />
       <Cursor />
     </div>
+    </SeasonProvider>
     </ThemeProvider>
   );
 }

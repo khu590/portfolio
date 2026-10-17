@@ -86,3 +86,43 @@ section[id] { scroll-margin-top: 96px; }
   .cv-page a { text-decoration: none !important; }
   .cv-page { font-size: 10pt; line-height: 1.4; }
 }
+
+/* seasonal backdrop: petals / leaves / snow drifting down */
+@keyframes season-fall {
+  0% { transform: translate3d(0, -20px, 0) rotate(0deg); }
+  50% { transform: translate3d(var(--sway, 40px), 50vh, 0) rotate(180deg); }
+  100% { transform: translate3d(0, 105vh, 0) rotate(360deg); }
+}
+.season-fall {
+  animation-name: season-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+/* autumn leaves tumble and swirl more than petals or snow */
+@keyframes season-tumble {
+  0% { transform: translate3d(0, -20px, 0) rotate(0deg) rotateX(0deg); }
+  25% { transform: translate3d(var(--sway, 40px), 25vh, 0) rotate(140deg) rotateX(180deg); }
+  50% { transform: translate3d(calc(var(--sway, 40px) * -0.6), 52vh, 0) rotate(260deg) rotateX(360deg); }
+  75% { transform: translate3d(var(--sway, 40px), 78vh, 0) rotate(400deg) rotateX(540deg); }
+  100% { transform: translate3d(0, 105vh, 0) rotate(540deg) rotateX(720deg); }
+}
+.season-tumble {
+  animation-name: season-tumble;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+@keyframes season-rain {
+  from { transform: translate3d(0, -40px, 0) rotate(12deg); }
+  to { transform: translate3d(-60px, 110vh, 0) rotate(12deg); }
+}
+.season-rain { animation: season-rain linear infinite; }
+@keyframes season-twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.season-twinkle { animation: season-twinkle 1.6s ease-in-out infinite; }
+@keyframes season-spin { to { transform: rotate(360deg); } }
+.season-spin { animation: season-spin 60s linear infinite; }

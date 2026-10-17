@@ -29,7 +29,7 @@ export default function Home() {
           href="/cv"
           className="fixed bottom-4 left-4 z-[60] rounded-full bg-white/70 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-scrap-rosedark backdrop-blur transition-colors hover:bg-scrap-rosedark hover:text-white md:bottom-6 md:left-6"
         >
-          In a hurry? Plain résumé →
+          In a hurry? Recruiter view →
         </a>
       )}
 

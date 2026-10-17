@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import {
   profile,
   bio,
@@ -11,7 +11,7 @@ import {
 } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Khushi Bijkal · Data Analyst · Résumé",
+  title: "Khushi Bijkal · Recruiter view",
   description: `${profile.name}: data analyst and DevOps, ${profile.location}. Plain-text résumé.`,
 };
 
