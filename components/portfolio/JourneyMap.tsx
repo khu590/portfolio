@@ -138,6 +138,20 @@ export default function JourneyMap() {
   const stops = useMemo(buildStops, []);
   const [selected, setSelected] = useState<string | null>(null);
   const [open, setOpen] = useState<string | null>(null);
+  const [filter, setFilter] = useState<"all" | "work" | "education">("all");
+  // "all" shows everything incl. the move to Dublin; a filter shows only that kind
+  const shown = filter === "all" ? stops : stops.filter((s) => s.kind === filter);
+  function pick(id: string) {
+    // one click selects the stop on the map AND opens its full description
+    const same = selected === id;
+    setSelected(same ? null : id);
+    setOpen(same ? null : id);
+  }
+  function toggleFilter(f: "work" | "education") {
+    setFilter((cur) => (cur === f ? "all" : f));
+    setSelected(null);
+    setOpen(null);
+  }
   const [zoom, setZoom] = useState(1);
   const [t, setT] = useState(reduce ? 1 : 0);
 
@@ -179,9 +193,32 @@ export default function JourneyMap() {
           <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-scrap-rosedark dark:text-[#D98DA0]">Bengaluru to Dublin</p>
           <h2 className="font-serif text-3xl font-semibold text-ink dark:text-[#F3E9EE] sm:text-4xl">Work and study</h2>
         </div>
-        <div className="flex items-center gap-4 font-sans text-xs text-inksoft dark:text-[#B9A9B8]">
-          <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full" style={{ background: ROSE }} /> Work</span>
-          <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full" style={{ background: AMBER }} /> Education</span>
+        <div role="group" aria-label="Filter work and study" className="flex items-center gap-2 font-sans text-xs">
+          {(
+            [
+              ["all", "All", null],
+              ["work", "Work", ROSE],
+              ["education", "Education", AMBER],
+            ] as const
+          ).map(([key, label, color]) => {
+            const active = filter === key;
+            return (
+              <button
+                key={key}
+                type="button"
+                aria-pressed={active}
+                onClick={() => (key === "all" ? (setFilter("all"), setSelected(null), setOpen(null)) : toggleFilter(key))}
+                className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-colors ${
+                  active
+                    ? "bg-white text-ink shadow ring-1 ring-scrap-rose/40 dark:bg-[#2A2240] dark:text-[#F3E9EE]"
+                    : "text-inksoft hover:bg-white/60 dark:text-[#B9A9B8] dark:hover:bg-white/10"
+                }`}
+              >
+                {color && <span className="h-3 w-3 rounded-full" style={{ background: color }} />}
+                {label}
+              </button>
+            );
+          })}
         </div>
       </motion.div>
 
@@ -231,6 +268,9 @@ export default function JourneyMap() {
                   </p>
                   <p className="mt-1 font-sans text-sm font-semibold leading-snug text-ink dark:text-[#F3E9EE]">{tipStop.title}</p>
                   <p className="font-sans text-xs text-inksoft dark:text-[#B9A9B8]">{tipStop.org} · {tipStop.date}</p>
+                  {tipStop.details[0] && tipStop.kind !== "education" && (
+                    <p className="mt-1.5 line-clamp-3 font-sans text-[11px] leading-snug text-inksoft dark:text-[#B9A9B8]">{tipStop.details[0]}</p>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -260,14 +300,14 @@ export default function JourneyMap() {
         </div>
 
         {/* Directions panel */}
-        <div className="rounded-[28px] bg-white/90 dark:bg-[#211b2e]/90 transition-colors duration-500 p-5 shadow-[0_10px_30px_-12px_rgba(168,66,94,0.25)] ring-1 ring-black/5 dark:ring-white/10 sm:p-6 lg:max-h-[440px] lg:overflow-y-auto lg:overscroll-contain">
+        <div className="rounded-[28px] bg-white/90 dark:bg-[#211b2e]/90 transition-colors duration-500 p-5 shadow-[0_10px_30px_-12px_rgba(168,66,94,0.25)] ring-1 ring-black/5 dark:ring-white/10 sm:p-6 lg:max-h-[560px] lg:overflow-y-auto lg:overscroll-contain">
           <div className="mb-4 flex items-center justify-between">
             <p className="font-sans text-sm font-semibold text-ink dark:text-[#F3E9EE]">Bengaluru → Dublin</p>
             <span className="rounded-full bg-scrap-bg dark:bg-[#2A2240] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-inksoft dark:text-[#B9A9B8]">2019 → now</span>
           </div>
           <ol className="relative">
             <span aria-hidden className="absolute bottom-4 left-[9px] top-4 w-0.5 border-l-2 border-dotted border-scrap-pink/60" />
-            {stops.map((s) => {
+            {shown.map((s) => {
               const color = s.kind === "work" ? ROSE : s.kind === "education" ? AMBER : dark ? "#F3E9EE" : "#1C1B17";
               const isSel = selected === s.id;
               const isOpen = open === s.id;
@@ -282,7 +322,7 @@ export default function JourneyMap() {
                   </span>
                   <button
                     type="button"
-                    onClick={() => setSelected(isSel ? null : s.id)}
+                    onClick={() => pick(s.id)}
                     aria-pressed={isSel}
                     className={`w-full rounded-2xl px-3 py-2 text-left transition ${isSel ? "bg-scrap-pink/15 ring-1 ring-scrap-rose/40" : "hover:bg-scrap-bg dark:hover:bg-white/10"}`}
                   >
@@ -327,7 +367,7 @@ export default function JourneyMap() {
                                 ))}
                               </div>
                             ) : (
-                              <ul className="space-y-1.5 py-2 font-sans text-xs leading-relaxed text-inksoft dark:text-[#B9A9B8]">
+                              <ul className="space-y-2 py-2 font-sans text-[13px] leading-relaxed text-inksoft dark:text-[#B9A9B8]">
                                 {s.details.map((d) => (
                                   <li key={d} className="flex gap-2">
                                     <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-scrap-rose" />
