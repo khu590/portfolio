@@ -10,6 +10,7 @@ export const profile = {
   location: "Dublin, Ireland",
   email: "khushi.n.bijkal@gmail.com",
   phone: "+353 89 202 8094",
+  whatsapp: "https://wa.me/353892028094?text=Hi%20Khushi%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20chat.",
   github: "https://github.com/khu590",
   linkedin: "https://www.linkedin.com/in/khushi-bijkal/",
 };

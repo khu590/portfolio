@@ -39,10 +39,10 @@ const PALETTE = [
 
 // Final (fanned) offsets in px around the folder centre, desktop only.
 const SLOTS = [
-  { x: -400, y: -150, r: -6 },
-  { x: 400, y: -150, r: 6 },
-  { x: -400, y: 170, r: 4 },
-  { x: 400, y: 170, r: -4 },
+  { x: -430, y: -160, r: -6 },
+  { x: 430, y: -160, r: 6 },
+  { x: -430, y: 180, r: 4 },
+  { x: 430, y: 180, r: -4 },
   { x: -150, y: -260, r: -3 },
   { x: 150, y: -260, r: 3 },
 ];
@@ -63,7 +63,7 @@ function buildItems(): Item[] {
 function Folder() {
   return (
     <div>
-    <div className="relative mx-auto h-[220px] w-[300px] select-none md:h-[250px] md:w-[340px]" aria-hidden="true">
+    <div className="relative mx-auto h-[220px] w-[290px] select-none md:h-[270px] md:w-[380px]" aria-hidden="true">
       {/* back + tab */}
       <div className="absolute left-0 top-0 h-10 w-[45%] rounded-t-2xl bg-gradient-to-b from-[#C85C7A] to-[#B9506D]" />
       <div className="absolute inset-x-0 bottom-0 top-6 rounded-2xl rounded-tl-none bg-gradient-to-b from-[#C85C7A] to-[#A8425E] shadow-[0_24px_50px_-20px_rgba(168,66,94,0.55)]" />
@@ -102,24 +102,24 @@ function ProjectCard({ project, index, onOpen }: { project: Project; index: numb
     <button
       type="button"
       onClick={onOpen}
-      className="group block w-[260px] overflow-hidden rounded-2xl bg-white dark:bg-[#211b2e] text-left shadow-[0_18px_40px_-18px_rgba(28,27,23,0.35)] ring-1 ring-black/5 dark:ring-white/10 dark:shadow-[0_10px_30px_-12px_rgba(0,0,0,0.4)] transition-[transform,background-color,color] duration-500 hover:-translate-y-1 hover:shadow-[0_26px_50px_-18px_rgba(168,66,94,0.45)] focus:outline-none focus-visible:ring-2 focus-visible:ring-scrap-rose"
+      className="group block w-[290px] sm:w-[340px] overflow-hidden rounded-2xl bg-white dark:bg-[#211b2e] text-left shadow-[0_18px_40px_-18px_rgba(28,27,23,0.35)] ring-1 ring-black/5 dark:ring-white/10 dark:shadow-[0_10px_30px_-12px_rgba(0,0,0,0.4)] transition-[transform,background-color,color] duration-500 hover:-translate-y-1 hover:shadow-[0_26px_50px_-18px_rgba(168,66,94,0.45)] focus:outline-none focus-visible:ring-2 focus-visible:ring-scrap-rose"
       aria-label={`Open project: ${project.title}`}
     >
       <WindowChrome title={project.title.toLowerCase().replace(/\s+/g, "-")} />
       {project.cover ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={project.cover} alt="" className="h-40 w-full object-cover" />
+        <img src={project.cover} alt="" className="h-44 w-full object-cover sm:h-52" />
       ) : (
         <div
-          className="flex h-40 flex-col justify-end p-4"
+          className="flex h-44 flex-col justify-end p-5 sm:h-52"
           style={{ background: `linear-gradient(135deg, ${c.from}, ${c.to})` }}
         >
-          <h3 className="font-serif text-xl leading-tight text-white drop-shadow-sm">{project.title}</h3>
-          <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-white/85">{project.subtitle}</p>
+          <h3 className="font-serif text-2xl leading-tight text-white drop-shadow-sm">{project.title}</h3>
+          <p className="mt-1.5 font-mono text-[11px] uppercase tracking-wider text-white/90">{project.subtitle}</p>
         </div>
       )}
-      <div className="flex items-center justify-between px-4 py-2.5">
-        <span className="font-mono text-[10px] uppercase tracking-wider text-inksoft dark:text-[#B9A9B8]">View project</span>
+      <div className="flex items-center justify-between px-5 py-3">
+        <span className="font-mono text-[11px] uppercase tracking-wider text-inksoft dark:text-[#B9A9B8]">View project</span>
         <span className="text-scrap-rose dark:text-[#E07A98] transition-transform group-hover:translate-x-1">→</span>
       </div>
     </button>
@@ -312,13 +312,13 @@ export default function ProjectsFolder() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start end", "end end"] });
 
-  // Scale the desktop fan so the outermost cards (±530px wide, -370/+280px tall
+  // Scale the desktop fan so the outermost cards (±600px wide, -390/+330px tall
   // around centre) always fit inside the sticky viewport below the heading.
   const [fanScale, setFanScale] = useState(1);
   useEffect(() => {
     const fit = () => {
-      const byW = (window.innerWidth - 48) / 1100;
-      const byH = (window.innerHeight - 64 - 150) / 680;
+      const byW = (window.innerWidth - 48) / 1240;
+      const byH = (window.innerHeight - 64 - 150) / 740;
       setFanScale(Math.max(0.5, Math.min(1, byW, byH)));
     };
     fit();
@@ -367,7 +367,7 @@ export default function ProjectsFolder() {
         <div ref={containerRef} className="relative hidden h-[200vh] md:block">
           <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pt-16">
             {heading}
-            <div className="relative w-full max-w-6xl" style={{ height: 680 * fanScale }}>
+            <div className="relative w-full max-w-6xl" style={{ height: 740 * fanScale }}>
               <div className="absolute inset-0" style={{ transform: `translateY(${55 * fanScale}px) scale(${fanScale})` }}>
                 <div className="absolute left-1/2 top-1/2 z-[5] -translate-x-1/2 -translate-y-1/2">
                   <Folder />
