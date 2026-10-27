@@ -39,23 +39,25 @@ const PALETTE = [
 
 // Final (fanned) offsets in px around the folder centre, desktop only.
 const SLOTS = [
-  { x: -430, y: -160, r: -6 },
-  { x: 430, y: -160, r: 6 },
-  { x: -430, y: 180, r: 4 },
-  { x: 430, y: 180, r: -4 },
-  { x: -150, y: -260, r: -3 },
-  { x: 150, y: -260, r: 3 },
+  { x: -470, y: -300, r: -4 },
+  { x: 470, y: -300, r: 4 },
+  { x: -470, y: 30, r: 2 },
+  { x: 470, y: 30, r: -2 },
+  { x: -470, y: 360, r: -2 },
+  { x: 470, y: 360, r: 2 },
+  { x: 0, y: -360, r: -1 },
+  { x: 0, y: 360, r: 1 },
 ];
 
 function buildItems(): Item[] {
-  const real: Item[] = (projects as readonly Project[]).slice(0, 6).map((p, i) => ({
+  const real: Item[] = (projects as readonly Project[]).slice(0, 8).map((p, i) => ({
     kind: "project",
     project: p,
     index: i,
   }));
   if (real.length >= 3) return real;
   const soon: Item[] = COMING_SOON.map((label) => ({ kind: "soon", label }));
-  return [...real, ...soon].slice(0, 6);
+  return [...real, ...soon].slice(0, 8);
 }
 
 /* ---------------- Folder ---------------- */
@@ -317,8 +319,8 @@ export default function ProjectsFolder() {
   const [fanScale, setFanScale] = useState(1);
   useEffect(() => {
     const fit = () => {
-      const byW = (window.innerWidth - 48) / 1240;
-      const byH = (window.innerHeight - 64 - 150) / 740;
+      const byW = (window.innerWidth - 48) / 1320;
+      const byH = (window.innerHeight - 64 - 150) / 1100;
       setFanScale(Math.max(0.5, Math.min(1, byW, byH)));
     };
     fit();
@@ -367,7 +369,7 @@ export default function ProjectsFolder() {
         <div ref={containerRef} className="relative hidden h-[200vh] md:block">
           <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden pt-16">
             {heading}
-            <div className="relative w-full max-w-6xl" style={{ height: 740 * fanScale }}>
+            <div className="relative w-full max-w-6xl" style={{ height: 1100 * fanScale }}>
               <div className="absolute inset-0" style={{ transform: `translateY(${55 * fanScale}px) scale(${fanScale})` }}>
                 <div className="absolute left-1/2 top-1/2 z-[5] -translate-x-1/2 -translate-y-1/2">
                   <Folder />

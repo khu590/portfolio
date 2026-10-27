@@ -162,6 +162,58 @@ export const projects = [
     ],
   },
   {
+    title: "What Makes a Movie Last?",
+    subtitle: "Data Mining · Regression · 36,000+ Films",
+    description:
+      "I combined IMDb, MovieLens and TMDB data on more than 36,000 films to predict long-term movie success. After cleaning and feature engineering I compared Linear Regression with Random Forest, and looked at production features against audience features. Random Forest did best with an R² of 0.86, and early audience engagement turned out to predict success better than anything about the production.",
+    stack: ["Python", "pandas", "NumPy", "scikit-learn", "Random Forest", "Matplotlib", "Seaborn"],
+    metrics: [
+      { value: "36k+", label: "films from 3 sources" },
+      { value: "0.86", label: "R², Random Forest" },
+      { value: "Audience", label: "beat production features" },
+    ],
+    github: "https://github.com/khu590/data-mining-movie-success-audience-vs-production",
+  },
+  {
+    title: "London Bikes and the Weather",
+    subtitle: "Apache Spark · PySpark · TfL Open Data",
+    description:
+      "An end-to-end PySpark pipeline that joins London weather (1979 to 2023) with TfL daily cycle hires (2010 to 2025) to see how weather changes demand. I cleaned 1,204 missing weather values, removed outliers with a mean plus or minus 4 standard deviations rule, joined the two on date into 4,078 days and built features such as weekend, rain flag and temperature band. Warm, sunny days lift hires (temperature r = 0.648, sunshine r = 0.532), while rain and humidity pull them down.",
+    stack: ["PySpark", "Spark SQL", "Spark DataFrames", "Matplotlib", "Jupyter"],
+    metrics: [
+      { value: "4,078", label: "days joined" },
+      { value: "0.648", label: "r, temperature vs hires" },
+      { value: "−0.534", label: "r, humidity vs hires" },
+    ],
+    github: "https://github.com/khu590/london-bike-hire-spark-pipeline",
+  },
+  {
+    title: "CardioRisk: Predicting Heart Disease",
+    subtitle: "Team project (DCU) · Classification · 70,000 Records",
+    description:
+      "A team project with Achal Nanjundamurthy on the cardio_train dataset of 70,000 anonymised patients. My part was the pre-processing, exploratory visualisations, interpreting the results and writing the report: removing unrealistic blood pressure, height and weight values, and adding age in years and BMI. We compared Logistic Regression, Random Forest, Gradient Boosting and XGBoost. XGBoost did best with 0.729 accuracy and an F1 of 0.714, and BMI and blood pressure were the strongest predictors.",
+    stack: ["Python", "pandas", "scikit-learn", "XGBoost", "Matplotlib", "Seaborn"],
+    metrics: [
+      { value: "70k", label: "patient records" },
+      { value: "0.714", label: "F1, XGBoost" },
+      { value: "5-fold", label: "cross-validation" },
+    ],
+    github: "https://github.com/khu590/CardioRisk_ML",
+  },
+  {
+    title: "When Do US Flights Run Late?",
+    subtitle: "Seasonality Analysis · Plotly · 6.2M Flights",
+    description:
+      "I looked at about 6.2 million US domestic flights from 2020 to see whether delays follow the seasons. After filtering and filling gaps with medians, I grouped arrival and departure delays by month and built an interactive Plotly chart with seasonal bands, hover values and a colour-blind friendly palette. Delays peak from June to August and in December, and are lowest from January to March.",
+    stack: ["Python", "pandas", "Plotly", "Matplotlib", "Google Colab"],
+    metrics: [
+      { value: "6.2M", label: "flights analysed" },
+      { value: "Jun–Aug", label: "worst delays, plus Dec" },
+      { value: "Plotly", label: "interactive chart" },
+    ],
+    github: "https://github.com/khu590/flight-delay-seasonality-analysis",
+  },
+  {
     title: "Predictive Log Monitoring",
     subtitle: "Société Générale · ML for Production Support",
     description:

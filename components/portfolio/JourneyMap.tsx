@@ -88,7 +88,7 @@ function buildStops(): Stop[] {
     place: "dublin",
     details: [],
   };
-  return [...work, ...edu, move].sort((a, b) => a.sortDate.localeCompare(b.sortDate));
+  return [...work, ...edu, move].sort((a, b) => b.sortDate.localeCompare(a.sortDate)); // most recent first
 }
 
 const B = project(places.bengaluru.lat, places.bengaluru.lon);
@@ -303,7 +303,7 @@ export default function JourneyMap() {
         <div className="rounded-[28px] bg-white/90 dark:bg-[#211b2e]/90 transition-colors duration-500 p-5 shadow-[0_10px_30px_-12px_rgba(168,66,94,0.25)] ring-1 ring-black/5 dark:ring-white/10 sm:p-6 lg:max-h-[560px] lg:overflow-y-auto lg:overscroll-contain">
           <div className="mb-4 flex items-center justify-between">
             <p className="font-sans text-sm font-semibold text-ink dark:text-[#F3E9EE]">Bengaluru → Dublin</p>
-            <span className="rounded-full bg-scrap-bg dark:bg-[#2A2240] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-inksoft dark:text-[#B9A9B8]">2019 → now</span>
+            <span className="rounded-full bg-scrap-bg dark:bg-[#2A2240] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-inksoft dark:text-[#B9A9B8]">now → 2019</span>
           </div>
           <ol className="relative">
             <span aria-hidden className="absolute bottom-4 left-[9px] top-4 w-0.5 border-l-2 border-dotted border-scrap-pink/60" />
