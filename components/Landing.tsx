@@ -1,7 +1,7 @@
 // components/Landing.tsx
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type RefObject } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { profile } from "@/lib/data";
@@ -12,6 +12,52 @@ import { profile } from "@/lib/data";
 // little to no scaling on most laptops, and scales cleanly up/down otherwise.
 const CANVAS_W = 1440;
 const CANVAS_H = 900;
+
+// Drag-and-drop on the desktop board: notes, film strip and polaroids can be
+// moved anywhere on the canvas. Phones keep the fixed layout so scrolling works.
+const DragCtx = createContext<RefObject<HTMLDivElement> | null>(null);
+let topZ = 20; // last thing picked up goes on top
+
+function useDraggable() {
+  const bounds = useContext(DragCtx);
+  const moved = useRef(false);
+  const [z, setZ] = useState<number | undefined>(undefined);
+  const props = bounds
+    ? {
+        drag: true as const,
+        dragConstraints: bounds,
+        dragMomentum: false,
+        dragElastic: 0.08,
+        whileDrag: { scale: 1.06, cursor: "grabbing" },
+        onDragStart: () => {
+          moved.current = true;
+          setZ(++topZ);
+        },
+      }
+    : {};
+  // a drag ends with a click event; swallow it so dropping a note doesn't open a section
+  const guardClick = (fn?: () => void) => () => {
+    if (moved.current) {
+      moved.current = false;
+      return;
+    }
+    fn?.();
+  };
+  return { props, z, enabled: !!bounds, guardClick };
+}
+
+/** motion.div that can be picked up and moved on the desktop board. */
+function DragMotion({ style, className = "", ...rest }: React.ComponentProps<typeof motion.div>) {
+  const d = useDraggable();
+  return (
+    <motion.div
+      {...rest}
+      {...d.props}
+      className={`${className} ${d.enabled ? "cursor-grab" : ""}`}
+      style={{ ...(style as object), zIndex: d.z }}
+    />
+  );
+}
 
 type CardProps = {
   children: React.ReactNode;
@@ -37,25 +83,27 @@ function ScrapCard({
   ariaLabel,
 }: CardProps) {
   const interactive = !!onClick;
+  const dragger = useDraggable();
   return (
     <motion.div
+      {...dragger.props}
       role={interactive ? "button" : undefined}
       tabIndex={interactive ? 0 : undefined}
       aria-label={ariaLabel}
-      onClick={onClick}
+      onClick={dragger.guardClick(onClick)}
       onKeyDown={(e) => {
         if (interactive && (e.key === "Enter" || e.key === " ")) {
           e.preventDefault();
           onClick?.();
         }
       }}
-      className={`absolute ${interactive ? "cursor-pointer" : ""} ${className}`}
-      style={{ rotate }}
+      className={`absolute ${dragger.enabled ? "cursor-grab" : interactive ? "cursor-pointer" : ""} ${className}`}
+      style={{ rotate, zIndex: dragger.z }}
       initial={{ opacity: 0, scale: 0.85, y: 16 }}
       animate={{ opacity: 1, scale: 1, y: 0, rotate }}
       whileHover={
         interactive
-          ? { rotate: hoverRotate, scale: 1.06, zIndex: 40, y: -6 }
+          ? { rotate: hoverRotate, scale: 1.06, zIndex: 40 }
           : undefined
       }
       whileTap={interactive ? { scale: 0.97 } : undefined}
@@ -221,6 +269,7 @@ function EnterButton({ onClick }: { onClick: () => void }) {
 
 function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
 
   useEffect(() => {
@@ -242,7 +291,9 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
       ref={wrapperRef}
       className="relative w-full h-full overflow-hidden"
     >
+      <DragCtx.Provider value={canvasRef}>
       <div
+        ref={canvasRef}
         className="absolute top-1/2 left-1/2"
         style={{
           width: CANVAS_W,
@@ -302,7 +353,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
         />
 
         {/* Film strip */}
-        <motion.div
+        <DragMotion
           className="absolute top-[130px] left-[212px] w-[346px] h-[112px] bg-[#9C3A1F] rounded-sm shadow-lg flex items-center gap-1.5 px-3"
           style={{ rotate: "-3deg" }}
           initial={{ opacity: 0, x: -20 }}
@@ -322,7 +373,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
               <Image src={src} alt="" fill className="object-cover" />
             </div>
           ))}
-        </motion.div>
+        </DragMotion>
 
         {/* About me */}
         <ScrapCard
@@ -387,7 +438,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
         </ScrapCard>
 
         {/* Polaroids */}
-        <motion.div
+        <DragMotion
           className="absolute top-[387px] left-[1125px] w-[83px] bg-white p-2 pb-3 shadow-lg"
           style={{ rotate: "-6deg" }}
           initial={{ opacity: 0, y: 10 }}
@@ -398,8 +449,8 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           <div className="relative w-full h-[79px] overflow-hidden bg-amber-bg">
             <Image src="/images/illustrated-avatar.jpg" alt="" fill className="object-cover" />
           </div>
-        </motion.div>
-        <motion.div
+        </DragMotion>
+        <DragMotion
           className="absolute top-[376px] left-[1210px] w-[83px] bg-white p-2 pb-3 shadow-lg"
           style={{ rotate: "5deg" }}
           initial={{ opacity: 0, y: 10 }}
@@ -410,7 +461,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           <div className="relative w-full h-[79px] overflow-hidden bg-paper2">
             <Image src="/images/cafe-candid.jpg" alt="" fill className="object-cover" />
           </div>
-        </motion.div>
+        </DragMotion>
 
         {/* Decorative emoji */}
         <div className="absolute top-[608px] left-[846px] text-6xl opacity-90">🐈</div>
@@ -439,7 +490,18 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
             <EnterButton onClick={() => onEnter()} />
           </motion.div>
         </div>
+
+        {/* hint that the board is interactive */}
+        <motion.p
+          className="pointer-events-none absolute top-[800px] left-1/2 -translate-x-1/2 whitespace-nowrap font-hand text-xl text-scrap-rosedark/80"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4, duration: 0.6 }}
+        >
+          psst, drag the notes and photos anywhere you like ✦
+        </motion.p>
       </div>
+      </DragCtx.Provider>
     </div>
   );
 }

@@ -21,9 +21,10 @@ export const SEASONS: { id: Season; label: string; icon: string }[] = [
 
 function seasonFromDate(): Season {
   const m = Number(new Intl.DateTimeFormat("en-IE", { timeZone: "Europe/Dublin", month: "numeric" }).format(new Date()));
-  if (m >= 3 && m <= 5) return "spring";
-  if (m >= 6 && m <= 8) return "summer";
-  if (m >= 9 && m <= 11) return "autumn";
+  // Irish calendar: spring Feb-Apr, summer May-Jul, autumn Aug-Oct, winter Nov-Jan
+  if (m >= 2 && m <= 4) return "spring";
+  if (m >= 5 && m <= 7) return "summer";
+  if (m >= 8 && m <= 10) return "autumn";
   return "winter";
 }
 
