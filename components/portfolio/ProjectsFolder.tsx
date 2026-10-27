@@ -288,7 +288,7 @@ function ProjectModal({ project, index, onClose }: { project: Project; index: nu
             <div className="flex flex-wrap gap-3">
               {project.github && (
                 <a href={project.github} target="_blank" rel="noreferrer" className="rounded-full bg-ink dark:bg-[#E07A98] px-5 py-2 text-sm text-white hover:bg-inksoft">
-                  GitHub ↗
+                  View code on GitHub ↗
                 </a>
               )}
               {project.demo && (

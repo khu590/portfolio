@@ -123,6 +123,11 @@ export default function CvPage() {
                     <a className={link} href={p.demo}>Read the paper</a>
                   </p>
                 ) : null}
+                {"github" in p && p.github ? (
+                  <p className="mt-1 text-sm">
+                    <a className={link} href={p.github}>Code on GitHub</a>
+                  </p>
+                ) : null}
               </li>
             ))}
           </ul>
