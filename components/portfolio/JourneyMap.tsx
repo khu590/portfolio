@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, animate, motion, useInView, useReducedMotion } from "framer-motion";
 import { experience, education, places } from "../../lib/data";
@@ -18,6 +20,7 @@ type Stop = {
   current: boolean;
   place: PlaceKey;
   details: string[];
+  photo?: { src: string; alt: string; caption: string };
 };
 
 const ROSE = "#C85C7A";
@@ -63,6 +66,7 @@ function buildStops(): Stop[] {
     current: e.current,
     place: e.place,
     details: e.highlights,
+    photo: "photo" in e ? e.photo : undefined,
   }));
   const edu: Stop[] = education.map((e) => ({
     id: `e-${e.sortDate}`,
@@ -367,6 +371,13 @@ export default function JourneyMap() {
                                 ))}
                               </div>
                             ) : (
+                              <div>
+                              {s.photo && (
+                                <figure className="my-3 ml-2 w-[230px] -rotate-2 bg-white p-2 pb-1 shadow-lg ring-1 ring-black/5">
+                                  <Image src={s.photo.src} alt={s.photo.alt} width={760} height={600} sizes="220px" className="h-auto w-full" />
+                                  <figcaption className="py-1.5 text-center font-hand text-base text-ink">{s.photo.caption}</figcaption>
+                                </figure>
+                              )}
                               <ul className="space-y-2 py-2 font-sans text-[13px] leading-relaxed text-inksoft dark:text-[#B9A9B8]">
                                 {s.details.map((d) => (
                                   <li key={d} className="flex gap-2">
@@ -375,6 +386,7 @@ export default function JourneyMap() {
                                   </li>
                                 ))}
                               </ul>
+                              </div>
                             )}
                           </motion.div>
                         )}
