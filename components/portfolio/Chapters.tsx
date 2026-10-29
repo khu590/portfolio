@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { Fragment } from "react";
+import { rustle } from "./photoSounds";
 
 // Three chapters pegged to a washing line, in order, so nobody has to open
 // anything to see them. A paper plane crosses the gap where she moved.
@@ -12,8 +13,9 @@ const CHAPTERS = [
     alt: "Khushi in her graduation cap and gown at her DSATM graduation",
     w: 640,
     h: 961,
-    when: "2023",
-    caption: "Graduated, DSATM",
+    when: "2019 – 2023",
+    caption: "DSATM",
+    role: "B.Engg in Computer Science",
     place: "Bengaluru",
     icon: "🎓",
   },
@@ -22,8 +24,9 @@ const CHAPTERS = [
     alt: "Khushi at the Société Générale office in Bengaluru, in front of a screen reading The Future Is You",
     w: 1100,
     h: 647,
-    when: "2023 – 25",
+    when: "2023 – 2025",
     caption: "Société Générale",
+    role: "DevOps (Analyst)",
     place: "Bengaluru",
     icon: "💼",
   },
@@ -32,8 +35,9 @@ const CHAPTERS = [
     alt: "Khushi sitting in front of the big DCU letters on campus",
     w: 800,
     h: 600,
-    when: "2025 – 26",
-    caption: "MSc at DCU",
+    when: "2025 – 2026",
+    caption: "DCU",
+    role: "M.Sc in Computing (Data Analytics)",
     place: "Dublin",
     icon: "🍀",
   },
@@ -78,7 +82,8 @@ export default function Chapters() {
               animate={still ? undefined : { rotate: i % 2 ? [3, 1.5, 3] : [-3, -1.5, -3] }}
               transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
               whileHover={{ rotate: 0, scale: 1.04, y: 6 }}
-              className={`relative shrink-0 snap-center bg-white p-2.5 pb-1 shadow-xl ring-1 ring-black/5 ${c.w > c.h ? "w-[300px] sm:w-[320px]" : "w-[200px] sm:w-[210px]"}`}
+              onHoverStart={rustle}
+              className={`relative shrink-0 snap-center bg-white p-2.5 pb-1 shadow-xl ring-1 ring-black/5 ${c.w > c.h ? "w-[300px] sm:w-[320px]" : "w-[220px] sm:w-[236px]"}`}
             >
               <Peg />
               <Image src={c.src} alt={c.alt} width={c.w} height={c.h} sizes="320px" className={`w-full object-cover ${c.w > c.h ? "h-[190px]" : "h-[260px]"}`} />
@@ -87,6 +92,7 @@ export default function Chapters() {
                   {c.icon} {c.when} · {c.place}
                 </span>
                 <span className="block font-hand text-xl leading-tight text-ink">{c.caption}</span>
+                <span className="mt-0.5 block font-sans text-[13px] font-semibold leading-snug text-scrap-rosedark">{c.role}</span>
               </figcaption>
             </motion.figure>
           </Fragment>

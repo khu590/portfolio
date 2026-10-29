@@ -8,42 +8,12 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import { shutter } from "./photoSounds";
 
 const PHOTOS = [
   { src: "/images/polaroid-dublin.jpg", alt: "Khushi on a bridge over the River Liffey in Dublin at sunset", caption: "Sunset on the Liffey" },
   { src: "/images/polaroid-armchair.jpg", alt: "Khushi smiling in a leather armchair against a brick wall", caption: "Off the clock" },
 ];
-
-let ctx: AudioContext | null = null;
-let last = 0;
-function shutter() {
-  const now = Date.now();
-  if (now - last < 350) return; // don't machine-gun on quick hovers
-  last = now;
-  try {
-    const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-    ctx = ctx ?? new Ctx();
-    if (ctx.state === "suspended") ctx.resume();
-    const t = ctx.currentTime;
-    // two short filtered noise clicks = shutter open / close
-    [0, 0.07].forEach((offset, i) => {
-      const buf = ctx!.createBuffer(1, ctx!.sampleRate * 0.05, ctx!.sampleRate);
-      const d = buf.getChannelData(0);
-      for (let j = 0; j < d.length; j++) d[j] = (Math.random() * 2 - 1) * Math.pow(1 - j / d.length, 3);
-      const src = ctx!.createBufferSource();
-      src.buffer = buf;
-      const bp = ctx!.createBiquadFilter();
-      bp.type = "bandpass";
-      bp.frequency.value = i === 0 ? 2600 : 1800;
-      const g = ctx!.createGain();
-      g.gain.value = 0.18;
-      src.connect(bp).connect(g).connect(ctx!.destination);
-      src.start(t + offset);
-    });
-  } catch {
-    /* audio not available — stay silent */
-  }
-}
 
 export default function PolaroidStack({ caption }: { caption: React.ReactNode }) {
   const reduce = useReducedMotion();

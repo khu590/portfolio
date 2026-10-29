@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { beyond, profile, type BeyondItem } from "@/lib/data";
+import { shutter, ting } from "./photoSounds";
 
 // "Beyond work": each activity hangs from a rail as an event lanyard.
 // The badges sway, swing when you brush past, and flip over to show the
@@ -31,6 +32,7 @@ function Lanyard({ item, i }: { item: BeyondItem; i: number }) {
       animate={still ? undefined : { rotate: [-1.6, 1.6] }}
       transition={{ duration: 3.2 + i * 0.4, repeat: Infinity, repeatType: "mirror", ease: "easeInOut", delay: i * 0.3 }}
       whileHover={still ? undefined : { rotate: [0, -6, 4, -2, 0], transition: { duration: 1.2 } }}
+      onHoverStart={ting}
     >
       {/* hook */}
       <span aria-hidden className="h-4 w-4 rounded-full border-[3px] border-[#B8A79A]" />
@@ -97,6 +99,7 @@ function Lanyard({ item, i }: { item: BeyondItem; i: number }) {
                 if (item.photos.length < 2) return;
                 e.stopPropagation();
                 setPhoto((photo + 1) % item.photos.length);
+                shutter();
               }}
             >
               <Image src={item.photos[photo].src} alt="" fill sizes="240px" className="object-cover object-[50%_32%]" />

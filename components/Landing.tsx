@@ -1,6 +1,7 @@
 // components/Landing.tsx
 "use client";
 
+import { filmClick, shutter } from "./portfolio/photoSounds";
 import { createContext, useContext, useEffect, useRef, useState, type RefObject } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -369,6 +370,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
             <div
               key={i}
               className="relative w-[70px] h-[90px] bg-white flex-shrink-0 overflow-hidden border-2 border-[#9C3A1F]"
+              onMouseEnter={filmClick}
             >
               <Image src={src} alt="" fill className="object-cover" />
             </div>
@@ -445,6 +447,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
           whileHover={{ rotate: 0, scale: 1.08, zIndex: 40 }}
+          onHoverStart={shutter}
         >
           <div className="relative w-full h-[79px] overflow-hidden bg-amber-bg">
             <Image src="/images/illustrated-avatar.jpg" alt="" fill className="object-cover" />
@@ -457,6 +460,7 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.5 }}
           whileHover={{ rotate: 0, scale: 1.08, zIndex: 40 }}
+          onHoverStart={shutter}
         >
           <div className="relative w-full h-[79px] overflow-hidden bg-paper2">
             <Image src="/images/cafe-candid.jpg" alt="" fill className="object-cover" />
@@ -548,6 +552,7 @@ function MobileBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           <div
             key={i}
             className="relative w-[78px] h-[72px] bg-white flex-shrink-0 overflow-hidden border-2 border-[#9C3A1F]"
+            onMouseEnter={filmClick}
           >
             <Image src={src} alt="" fill className="object-cover" />
           </div>
