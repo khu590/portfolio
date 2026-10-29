@@ -299,7 +299,7 @@ export const education = [
 // "Beyond work" lanyard wall: volunteering, speaking and hobbies.
 // One entry per lanyard. `kind` sets the badge colour and icon.
 export type BeyondItem = {
-  kind: "Speaking" | "Volunteering" | "Hobby";
+  kind: "Speaking" | "Event" | "Volunteering" | "Hobby";
   role: string; // printed big on the badge
   org: string;
   title: string;
@@ -322,5 +322,19 @@ export const beyond: BeyondItem[] = [
       { src: "/images/beyond/toastmasters-speaking.jpg", alt: "Khushi standing at the front of a Toastmasters meeting, speaking to the room" },
     ],
     ribbon: { src: "/images/beyond/toastmasters-ribbon.jpg", alt: "Toastmasters ribbon reading Best Table Topics" },
+  },
+  {
+    kind: "Event",
+    role: "Attendee",
+    org: "Affiliate World EMEA 2026",
+    title: "At Google's Dublin HQ",
+    when: "2026",
+    story:
+      "A day of affiliate and performance marketing talks at Google Dublin. Plenty felt familiar from my e-commerce work, but the idea that stuck was that the opportunity isn't AI itself, it's how AI is reshaping business models. And without structure, nothing scales. It all ties back to data.",
+    photos: [
+      { src: "/images/beyond/google-ireland-map.jpg", alt: "Khushi in front of the moss world map under the Google Ireland sign" },
+      { src: "/images/beyond/google-sofa.jpg", alt: "Khushi on a leather sofa under the Google logo on a living plant wall" },
+      { src: "/images/beyond/google-with-henry.jpg", alt: "Khushi and a friend pointing at the moss world map at Google Ireland" },
+    ],
   },
 ];

@@ -11,6 +11,7 @@ import { beyond, profile, type BeyondItem } from "@/lib/data";
 
 const STYLE: Record<BeyondItem["kind"], { strap: string; band: string; icon: string }> = {
   Speaking: { strap: "#A8425E", band: "#C85C7A", icon: "🎤" },
+  Event: { strap: "#2F5FA8", band: "#4A7FD0", icon: "📍" },
   Volunteering: { strap: "#5E8C6A", band: "#7FAE8A", icon: "♥" },
   Hobby: { strap: "#C98A2B", band: "#E8A33D", icon: "★" },
 };
@@ -69,9 +70,17 @@ function Lanyard({ item, i }: { item: BeyondItem; i: number }) {
                 <span aria-hidden className="mr-1">{s.icon}</span>
                 {item.title}
               </p>
-              {item.ribbon && (
+              {item.ribbon ? (
                 <div className="relative mb-12 mt-auto h-[52px] w-full -rotate-2 overflow-hidden rounded-sm shadow-md">
                   <Image src={item.ribbon.src} alt={item.ribbon.alt} fill sizes="240px" className="object-cover" />
+                </div>
+              ) : (
+                // no ribbon: a little photo taped on as a preview of the back
+                <div className="relative mb-11 mt-auto h-[96px] w-[130px] rotate-3 self-end bg-white p-1 shadow-md">
+                  <span aria-hidden className="absolute -top-2 left-1/2 z-10 h-4 w-12 -translate-x-1/2 -rotate-2 bg-[#f3e3c7]/90" />
+                  <div className="relative h-full w-full overflow-hidden">
+                    <Image src={item.photos[0].src} alt="" fill sizes="130px" className="object-cover object-[50%_30%]" />
+                  </div>
                 </div>
               )}
             </div>
@@ -90,7 +99,7 @@ function Lanyard({ item, i }: { item: BeyondItem; i: number }) {
                 setPhoto((photo + 1) % item.photos.length);
               }}
             >
-              <Image src={item.photos[photo].src} alt="" fill sizes="240px" className="object-cover" />
+              <Image src={item.photos[photo].src} alt="" fill sizes="240px" className="object-cover object-[50%_32%]" />
               {item.photos.length > 1 && (
                 <span className="absolute bottom-2 right-2 rounded-full bg-black/55 px-2 py-0.5 font-mono text-[10px] text-white">
                   {photo + 1}/{item.photos.length} · tap photo
@@ -110,6 +119,7 @@ export default function Lanyards() {
   const count = (k: BeyondItem["kind"]) => beyond.filter((b) => b.kind === k).length;
   const tally = [
     count("Speaking") && `${count("Speaking")} on stage`,
+    count("Event") && `${count("Event")} event${count("Event") > 1 ? "s" : ""}`,
     count("Volunteering") && `${count("Volunteering")} volunteering`,
     count("Hobby") && `${count("Hobby")} just for fun`,
   ].filter(Boolean);
