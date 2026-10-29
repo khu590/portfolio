@@ -295,3 +295,32 @@ export const education = [
     modules: "Data Structures & Algorithms · Linux · OOP in C++ · Database Management Systems · Operating Systems · Computer Networks · Final-year project published in IJRAR (May 2023)",
   },
 ];
+
+// "Beyond work" lanyard wall: volunteering, speaking and hobbies.
+// One entry per lanyard. `kind` sets the badge colour and icon.
+export type BeyondItem = {
+  kind: "Speaking" | "Volunteering" | "Hobby";
+  role: string; // printed big on the badge
+  org: string;
+  title: string;
+  when?: string; // leave out rather than guess
+  story: string;
+  photos: { src: string; alt: string }[];
+  ribbon?: { src: string; alt: string };
+};
+
+export const beyond: BeyondItem[] = [
+  {
+    kind: "Speaking",
+    role: "Speaker",
+    org: "Toastmasters International",
+    title: "Best Table Topics",
+    story:
+      "Table Topics is the bit of a Toastmasters meeting where you get a question you haven't seen and have a minute or two to answer it, no notes. I won Best Table Topics, and I've also stood up in front of the room to share some public speaking tips of my own.",
+    photos: [
+      { src: "/images/beyond/toastmasters-award.jpg", alt: "Khushi smiling as she receives the Best Table Topics ribbon at a Toastmasters meeting" },
+      { src: "/images/beyond/toastmasters-speaking.jpg", alt: "Khushi standing at the front of a Toastmasters meeting, speaking to the room" },
+    ],
+    ribbon: { src: "/images/beyond/toastmasters-ribbon.jpg", alt: "Toastmasters ribbon reading Best Table Topics" },
+  },
+];

@@ -361,10 +361,10 @@ function DesktopBoard({ onEnter }: { onEnter: (id?: string) => void }) {
           transition={{ delay: 0.3, duration: 0.5 }}
         >
           {[
-            "/images/hero-wall-portrait.jpg",
+            "/images/cherry-blossom.jpg",
             "/images/cafe-candid.jpg",
             "/images/illustrated-avatar.jpg",
-            "/images/hero-wall-portrait.jpg",
+            "/images/fountain-park.jpg",
           ].map((src, i) => (
             <div
               key={i}
@@ -541,7 +541,7 @@ function MobileBoard({ onEnter }: { onEnter: (id?: string) => void }) {
         transition={{ delay: 0.25, duration: 0.4 }}
       >
         {[
-          "/images/hero-wall-portrait.jpg",
+          "/images/cherry-blossom.jpg",
           "/images/cafe-candid.jpg",
           "/images/illustrated-avatar.jpg",
         ].map((src, i) => (

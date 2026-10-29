@@ -12,6 +12,7 @@ import Cursor from "./Cursor";
 import { useLofi } from "./JazzPlayer";
 import { Hero, Impact, Journey, Skills, Credentials, Contact } from "./Sections";
 import ProjectsFolder from "./ProjectsFolder";
+import Lanyards from "./Lanyards";
 import { profile } from "@/lib/data";
 
 function MusicButton() {
@@ -70,6 +71,7 @@ export default function PortfolioPage({ initialTarget }: { initialTarget?: strin
         <Journey />
         <Skills />
         <Credentials />
+        <Lanyards />
         <Contact />
       </div>
       <MusicButton />
