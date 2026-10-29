@@ -14,7 +14,7 @@ const CHAPTERS = [
     w: 640,
     h: 961,
     when: "2019 – 2023",
-    caption: "DSATM",
+    caption: "Dayananda Sagar Academy of Technology and Management",
     role: "B.Engg in Computer Science",
     place: "Bengaluru",
     icon: "🎓",
@@ -36,7 +36,7 @@ const CHAPTERS = [
     w: 800,
     h: 600,
     when: "2025 – 2026",
-    caption: "DCU",
+    caption: "Dublin City University",
     role: "M.Sc in Computing (Data Analytics)",
     place: "Dublin",
     icon: "🍀",
@@ -91,7 +91,7 @@ export default function Chapters() {
                 <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
                   {c.icon} {c.when} · {c.place}
                 </span>
-                <span className="block font-hand text-xl leading-tight text-ink">{c.caption}</span>
+                <span className="block px-1 font-hand text-lg leading-tight text-ink">{c.caption}</span>
                 <span className="mt-0.5 block font-sans text-[13px] font-semibold leading-snug text-scrap-rosedark">{c.role}</span>
               </figcaption>
             </motion.figure>
