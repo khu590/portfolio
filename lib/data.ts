@@ -287,7 +287,6 @@ export const education = [
     place: "bengaluru" as const,
     degree: "BE Computer Science Engineering",
     school: "Dayananda Sagar Academy of Technology and Management",
-    photo: { src: "/images/dsatm-graduation.jpg", alt: "Khushi in her graduation cap and gown at her DSATM graduation", caption: "Graduation day, DSATM" },
     location: "Bengaluru, India",
     date: "June 2019 – June 2023",
     sortDate: "2019-06",

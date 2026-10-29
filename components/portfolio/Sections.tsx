@@ -327,11 +327,6 @@ export function Credentials() {
             </motion.div>
           ))}
         </div>
-        <div className="flex flex-col gap-8">
-        <motion.figure {...reveal} className="mx-auto w-full max-w-[460px] rotate-[1.5deg] bg-white p-3 pb-2 shadow-xl ring-1 ring-black/5">
-          <Image src="/images/socgen-office.jpg" alt="Khushi at the Société Générale office in Bengaluru, in front of a screen reading The Future Is You" width={1100} height={647} sizes="(max-width: 768px) 90vw, 460px" className="h-auto w-full" />
-          <figcaption className="pt-2 text-center font-hand text-lg text-ink">Société Générale, Bengaluru, where both awards came from</figcaption>
-        </motion.figure>
         <motion.div {...reveal} className={`${card} p-6`}>
           <h3 className="mb-4 font-sans text-sm font-semibold uppercase tracking-wider text-scrap-rosedark dark:text-[#D98DA0]">Certifications</h3>
           <ul className="divide-y divide-line">
@@ -343,7 +338,6 @@ export function Credentials() {
             ))}
           </ul>
         </motion.div>
-        </div>
       </div>
     </section>
   );

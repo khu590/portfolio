@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, animate, motion, useInView, useReducedMotion } from "framer-motion";
 import { experience, education, places } from "../../lib/data";
 import { useTheme } from "./theme";
+import Chapters from "./Chapters";
 
 type PlaceKey = keyof typeof places;
 
@@ -78,7 +79,6 @@ function buildStops(): Stop[] {
     current: e.current,
     place: e.place,
     details: e.modules.split(" · "),
-    photo: "photo" in e ? e.photo : undefined,
   }));
   const move: Stop = {
     id: "move",
@@ -225,6 +225,7 @@ export default function JourneyMap() {
           })}
         </div>
       </motion.div>
+      <Chapters />
 
       <div className="grid gap-5 lg:grid-cols-[1.5fr_1fr]">
         {/* Map card */}
