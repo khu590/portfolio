@@ -105,7 +105,6 @@ export const experience = [
     sortDate: "2023-08",
     badge: "Full-time · 2 yrs",
     current: false,
-    photo: { src: "/images/socgen-office.jpg", alt: "Khushi at the Société Générale office in Bengaluru, wearing her staff lanyard", caption: "SocGen, Bengaluru" },
     highlights: [
       "Resolved 25+ production incidents and application issues weekly in a live banking environment using SQL, Linux and log analysis, keeping management, users and technical teams updated until closure.",
       "Carried out root cause analysis on recurring issues with infrastructure and development teams to reduce repeat incidents.",
@@ -288,6 +287,7 @@ export const education = [
     place: "bengaluru" as const,
     degree: "BE Computer Science Engineering",
     school: "Dayananda Sagar Academy of Technology and Management",
+    photo: { src: "/images/dsatm-graduation.jpg", alt: "Khushi in her graduation cap and gown at her DSATM graduation", caption: "Graduation day, DSATM" },
     location: "Bengaluru, India",
     date: "June 2019 – June 2023",
     sortDate: "2019-06",

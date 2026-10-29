@@ -66,7 +66,6 @@ function buildStops(): Stop[] {
     current: e.current,
     place: e.place,
     details: e.highlights,
-    photo: "photo" in e ? e.photo : undefined,
   }));
   const edu: Stop[] = education.map((e) => ({
     id: `e-${e.sortDate}`,
@@ -79,6 +78,7 @@ function buildStops(): Stop[] {
     current: e.current,
     place: e.place,
     details: e.modules.split(" · "),
+    photo: "photo" in e ? e.photo : undefined,
   }));
   const move: Stop = {
     id: "move",
@@ -364,6 +364,26 @@ export default function JourneyMap() {
                             exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
                             className="overflow-hidden"
                           >
+                            {s.photo && (
+                              <div className="relative ml-2 mt-3 w-[230px]">
+                                {s.kind === "education" && !reduce && (
+                                  // the cap gets thrown, like on the day
+                                  <motion.span
+                                    aria-hidden
+                                    className="absolute -right-3 -top-3 z-10 text-3xl"
+                                    initial={{ y: 30, rotate: 0, opacity: 0 }}
+                                    animate={{ y: [30, -70, 0], rotate: [0, 200, 350], opacity: [0, 1, 1] }}
+                                    transition={{ duration: 1.4, ease: "easeOut", times: [0, 0.5, 1] }}
+                                  >
+                                    🎓
+                                  </motion.span>
+                                )}
+                                <figure className="-rotate-2 bg-white p-2 pb-1 shadow-lg ring-1 ring-black/5">
+                                  <Image src={s.photo.src} alt={s.photo.alt} width={640} height={961} sizes="230px" className="h-auto w-full" />
+                                  <figcaption className="py-1.5 text-center font-hand text-base text-ink">{s.photo.caption}</figcaption>
+                                </figure>
+                              </div>
+                            )}
                             {s.kind === "education" ? (
                               <div className="flex flex-wrap gap-1.5 py-2">
                                 {s.details.map((d) => (
@@ -372,12 +392,6 @@ export default function JourneyMap() {
                               </div>
                             ) : (
                               <div>
-                              {s.photo && (
-                                <figure className="my-3 ml-2 w-[230px] -rotate-2 bg-white p-2 pb-1 shadow-lg ring-1 ring-black/5">
-                                  <Image src={s.photo.src} alt={s.photo.alt} width={760} height={600} sizes="220px" className="h-auto w-full" />
-                                  <figcaption className="py-1.5 text-center font-hand text-base text-ink">{s.photo.caption}</figcaption>
-                                </figure>
-                              )}
                               <ul className="space-y-2 py-2 font-sans text-[13px] leading-relaxed text-inksoft dark:text-[#B9A9B8]">
                                 {s.details.map((d) => (
                                   <li key={d} className="flex gap-2">
